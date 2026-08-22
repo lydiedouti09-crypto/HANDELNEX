@@ -236,3 +236,5 @@
   .hero{ grid-template-columns: 1fr; padding: 70px 6vw 90px; }
   .hero-visual, .hero-caption{ display: none; }
 }
+
+

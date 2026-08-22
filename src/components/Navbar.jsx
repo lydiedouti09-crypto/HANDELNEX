@@ -21,7 +21,6 @@ function Navbar() {
         <NavLink to="/#a-propos">À propos</NavLink>
         <NavLink to="/#nos-activites">Nos activités</NavLink>
         <NavLink to="/#nos-solutions">Nos solutions</NavLink>
-        <NavLink to="/actualites">Actualités</NavLink>
         <NavLink to="/#contact">Contact</NavLink>
       </div>
       <Link to="/#nos-solutions" className="btn">Découvrir nos solutions →</Link>

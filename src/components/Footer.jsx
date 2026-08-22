@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer-grid">
         <div className="footer-brand">
           <div className="logo" style={{ color: '#fff' }}>
-            <img src="/LOGO.png" alt="Handelnex" className="footer-logo-img" />
+            <img src="/LOGO2.png" alt="Handelnex" className="footer-logo-img" />
           </div>
           <p>Des solutions qui connectent les opportunités.</p>
           <div className="socials">
