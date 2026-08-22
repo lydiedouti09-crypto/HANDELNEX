@@ -1,5 +1,5 @@
 import Icon from './Icon.jsx'
-import './Valueitem.css'
+import './ValueItem.css'
 
 function ValueItem({ icon, title, color = 'var(--gold)' }) {
   return (
