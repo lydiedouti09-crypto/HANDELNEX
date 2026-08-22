@@ -1,0 +1,26 @@
+.value-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.value-icon{
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(199,162,92,0.12);
+  border: 1px solid rgba(199,162,92,0.3);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.value-title{
+  font-size: 12.5px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #C3CBDE;
+  text-transform: uppercase;
+}

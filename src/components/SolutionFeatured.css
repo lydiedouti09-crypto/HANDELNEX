@@ -1,0 +1,133 @@
+.solution-featured{
+  background: linear-gradient(155deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: #fff;
+  border-radius: 26px;
+  padding: 50px 54px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.solution-featured.visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.solution-tag{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.solution-text h3{ font-size: 28px; margin-bottom: 12px; }
+.solution-text p{ color: #C3CBDE; font-size: 15px; margin-bottom: 26px; max-width: 420px; }
+
+.solution-actions{ display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+/* Boutons qui apparaissent en cascade quand la carte devient visible */
+.solution-actions > *, .qr-card{
+  opacity: 0;
+  transform: translateY(14px);
+  animation: btnIn 0.5s ease forwards;
+}
+.visible .store-1{ animation-delay: 0.15s; }
+.visible .store-2{ animation-delay: 0.28s; }
+.visible .store-3{ animation-delay: 0.41s; }
+.visible .store-4{ animation-delay: 0.54s; }
+.solution-featured:not(.visible) .solution-actions > *, .solution-featured:not(.visible) .qr-card{
+  animation: none;
+}
+
+@keyframes btnIn{
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.btn-store{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sky);
+  color: #06263a;
+  padding: 13px 24px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 14.5px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.btn-store:hover{
+  background: #5DD3FA;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 26px rgba(58,166,224,0.4);
+}
+.btn-store:active{ transform: translateY(-1px) scale(0.98); }
+
+.btn-ghost{
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 24px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14.5px;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.btn-ghost:hover{
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
+  transform: translateY(-3px);
+}
+
+.qr-card{
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 16px;
+  padding: 16px 22px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.qr-card:hover{
+  border-color: var(--sky);
+  background: rgba(58,166,224,0.08);
+}
+
+.qr-box{
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background: repeating-conic-gradient(var(--sky) 0% 25%, #0E1330 0% 50%) 0 0/16px 16px;
+  border: 6px solid rgba(255,255,255,0.08);
+}
+
+.qr-label{ font-size: 11px; letter-spacing: 0.08em; color: #9AA3C4; font-weight: 600; }
+.qr-title{ font-size: 15px; font-weight: 700; color: #fff; margin-top: 2px; }
+
+.solution-visual{ display: flex; align-items: center; justify-content: center; }
+
+.app-screenshot{
+  max-width: 100%;
+  max-height: 420px;
+  width: auto;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+  transition: transform 0.4s ease;
+}
+.solution-visual:hover .app-screenshot{ transform: translateY(-6px); }
+
+@media (max-width: 800px){
+  .solution-featured{ grid-template-columns: 1fr; padding: 36px; }
+}

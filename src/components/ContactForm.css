@@ -1,0 +1,61 @@
+.contact-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.form-card{
+  background: var(--paper-alt);
+  border-radius: 20px;
+  padding: 36px;
+}
+
+.field{ margin-bottom: 18px; }
+.field label{
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: var(--text-soft);
+}
+.field input, .field textarea{
+  width: 100%;
+  padding: 13px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  color: var(--text);
+}
+.field textarea{ min-height: 120px; resize: vertical; }
+.field input:focus, .field textarea:focus{
+  outline: 2px solid var(--gold);
+  border-color: transparent;
+}
+
+.info-list{ display: grid; gap: 16px; }
+.info-card-contact{
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.info-ico{
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: rgba(199,162,92,0.14);
+  color: var(--gold-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.info-card-contact h3{ font-size: 15.5px; margin-bottom: 4px; }
+.info-card-contact p{ font-size: 13.5px; color: var(--text-soft); }
+
+@media (max-width: 900px){
+  .contact-grid{ grid-template-columns: 1fr; }
+}

@@ -1,0 +1,80 @@
+.navbar{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 8vw;
+  background: #fff;
+  color: var(--navy-deep);
+  border-bottom: 1px solid rgba(16,40,69,0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.navbar-scrolled{
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+}
+
+.logo-img{
+  height: 62px;
+  width: auto;
+  display: block;
+}
+
+.nav-links{
+  display: flex;
+  gap: 32px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--navy-deep);
+}
+
+.nav-links a{
+  position: relative;
+  color: var(--navy-deep);
+  padding-bottom: 6px;
+}
+
+.nav-links a:hover{
+  color: var(--gold-deep, var(--gold));
+}
+
+.nav-links a.active{
+  color: var(--navy-deep);
+  font-weight: 700;
+}
+
+.nav-links a.active::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: var(--navy-deep);
+  padding: 12px 22px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.btn:hover{ background: var(--gold-deep); color: #fff; }
+
+@media (max-width: 860px){
+  .nav-links{ display: none; }
+}
