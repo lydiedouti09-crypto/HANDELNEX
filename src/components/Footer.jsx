@@ -26,7 +26,7 @@ function Footer() {
 
         <div className="footer-col">
           <h4>SOLUTIONS</h4>
-          <Link to="/nos-solutions/voyage">Voyage & Billetterie</Link>
+          <Link to="/#nos-solutions">Voyage & Billetterie</Link>
           <Link to="/#nos-solutions">Nos solutions</Link>
         </div>
 

@@ -110,7 +110,7 @@ function Hero() {
 
         <div className="hero-actions">
           <Link to="/#a-propos" className="btn">Découvrir Handelnex →</Link>
-          <Link to="/nos-solutions" className="btn btn-ghost">Nos solutions</Link>
+          <Link to="/#nos-solutions" className="btn btn-ghost">Nos solutions</Link>
         </div>
       </div>
 

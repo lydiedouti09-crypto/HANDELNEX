@@ -18,6 +18,12 @@
   background-size: cover;
   background-position: center;
   transition: opacity 1.5s ease-in-out;
+  animation: kenburns 4s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns{
+  from{ transform: scale(1); }
+  to{ transform: scale(1.2); }
 }
 
 .hero-overlay{
@@ -236,5 +242,3 @@
   .hero{ grid-template-columns: 1fr; padding: 70px 6vw 90px; }
   .hero-visual, .hero-caption{ display: none; }
 }
-
-

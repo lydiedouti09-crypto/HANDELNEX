@@ -11,20 +11,32 @@ const values = [
 function VisionSection() {
   return (
     <section id="notre-vision" className="vision-section">
-      <div className="vision-tag">NOTRE VISION</div>
-      <h1 className="vision-title">
-        Connecter les services.<br />
-        <span className="accent">Créer les opportunités.</span>
-      </h1>
-      <p className="vision-desc">
-        HANDELNEX ambitionne de développer des services et des solutions capables
-        d'accompagner les besoins d'un environnement de plus en plus connecté.
-      </p>
+      <video
+        src="/avions.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="vision-video"
+      />
+      <div className="vision-overlay"></div>
 
-      <div className="values-row">
-        {values.map((v) => (
-          <ValueItem key={v.title} {...v} />
-        ))}
+      <div className="vision-content">
+        <div className="vision-tag">NOTRE VISION</div>
+        <h1 className="vision-title">
+          Connecter les services.<br />
+          <span className="accent">Créer les opportunités.</span>
+        </h1>
+        <p className="vision-desc">
+          HANDELNEX ambitionne de développer des services et des solutions capables
+          d'accompagner les besoins d'un environnement de plus en plus connecté.
+        </p>
+
+        <div className="values-row">
+          {values.map((v) => (
+            <ValueItem key={v.title} {...v} />
+          ))}
+        </div>
       </div>
     </section>
   )

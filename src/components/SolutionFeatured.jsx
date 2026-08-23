@@ -25,15 +25,7 @@ function SolutionFeatured() {
           <a href="#" className="btn-store store-2">
             <AppleIcon size={18} /> App Store
           </a>
-          <Link to="/nos-solutions/voyage" className="btn-ghost store-3">Découvrir la solution</Link>
-        </div>
-
-        <div className="qr-card store-4">
-          <div className="qr-box"></div>
-          <div>
-            <div className="qr-label">SCANNER POUR TÉLÉCHARGER</div>
-            <div className="qr-title">Application Android</div>
-          </div>
+          <Link to="/#nos-solutions" className="btn-ghost store-3">Découvrir la solution</Link>
         </div>
       </div>
 
