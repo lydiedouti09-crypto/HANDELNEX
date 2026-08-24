@@ -1,12 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import Hero from '../components/Hero.jsx'
 import InfoCard from '../components/InfoCard.jsx'
 import ActivityCard from '../components/ActivityCard.jsx'
 import SolutionFeatured from '../components/SolutionFeatured.jsx'
+import SolutionCard from '../components/SolutionCard.jsx'
+import ActualiteCard from '../components/ActualiteCard.jsx'
 import ContactForm from '../components/ContactForm.jsx'
 import SectionHead from '../components/SectionHead.jsx'
 import VisionSection from '../components/VisionSection.jsx'
+import { fetchSolutions, fetchActualites } from '../api.js'
 
 const infos = [
   { icon: 'hub', title: "Plusieurs domaines d'activité", color: 'var(--gold)' },
@@ -29,12 +32,33 @@ const activities = [
 function Accueil() {
   const location = useLocation()
 
+  // --- Étape 1 : des "boîtes" pour stocker les données une fois reçues de l'API
+  const [solutions, setSolutions] = useState([])
+  const [actualites, setActualites] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  // --- Étape 2 : au chargement de la page, on va chercher les données
+  useEffect(() => {
+    fetchSolutions()
+      .then((data) => setSolutions(data))
+      .catch((err) => console.error('Erreur solutions:', err))
+
+    fetchActualites()
+      .then((data) => setActualites(data))
+      .catch((err) => console.error('Erreur actualités:', err))
+      .finally(() => setLoading(false))
+  }, [])
+
+  // Scroll vers une section si l'URL contient une ancre (#a-propos, etc.)
   useEffect(() => {
     if (location.hash) {
       const el = document.querySelector(location.hash)
       if (el) el.scrollIntoView({ behavior: 'smooth' })
     }
   }, [location])
+
+  // La première solution reçue devient la grande carte ; les autres, des petites cartes
+  const [premiereSolution, ...autresSolutions] = solutions
 
   return (
     <>
@@ -49,11 +73,8 @@ function Accueil() {
         >
           <Link to="/#nos-activites" className="btn-dark" style={{ marginTop: '26px' }}>En savoir plus →</Link>
         </SectionHead>
-
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', maxWidth: '900px', margin: '0 auto' }}>
-          {infos.map((info) => (
-            <InfoCard key={info.title} {...info} />
-          ))}
+          {infos.map((info) => <InfoCard key={info.title} {...info} />)}
         </div>
       </section>
 
@@ -65,30 +86,59 @@ function Accueil() {
           description="Un ensemble de services complémentaires au cœur de HANDELNEX."
         />
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '18px' }}>
-          {activities.map((a, i) => (
-            <ActivityCard key={a.title} {...a} delay={(i % 4) * 100} />
-          ))}
+          {activities.map((a, i) => <ActivityCard key={a.title} {...a} delay={(i % 4) * 100} />)}
         </div>
       </section>
 
-      {/* Nos solutions */}
+      {/* Nos solutions — connecté à l'API */}
       <section id="nos-solutions" style={{ padding: '90px 8vw' }}>
         <SectionHead
           tag="ÉCOSYSTÈME"
           title="Nos solutions"
           description="Découvrez les applications et services proposés par HANDELNEX. Un écosystème conçu pour évoluer."
         />
-        <SolutionFeatured />
+
+        {loading && <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>Chargement des solutions...</p>}
+
+        {!loading && !premiereSolution && (
+          <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>
+            Aucune solution publiée pour le moment. Ajoutes-en une depuis l'espace admin.
+          </p>
+        )}
+
+        {premiereSolution && <SolutionFeatured {...premiereSolution} />}
+
+        {autresSolutions.length > 0 && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '24px' }}>
+            {autresSolutions.map((s) => <SolutionCard key={s.slug} {...s} />)}
+          </div>
+        )}
+      </section>
+
+      {/* Actualités — connecté à l'API */}
+      <section id="actualites" style={{ padding: '90px 8vw', background: 'var(--paper-alt)' }}>
+        <SectionHead
+          tag="ACTUALITÉS"
+          title="Actualités & nouveautés"
+          description="Suivez les dernières nouvelles et initiatives de HANDELNEX."
+        />
+
+        {!loading && actualites.length === 0 && (
+          <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>
+            Aucune actualité publiée pour le moment.
+          </p>
+        )}
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+          {actualites.map((a) => <ActualiteCard key={a.slug} {...a} />)}
+        </div>
       </section>
 
       <VisionSection />
 
       {/* Contact */}
       <section id="contact" style={{ padding: '90px 8vw', background: 'var(--paper-alt)' }}>
-        <SectionHead
-          tag="CONTACT"
-          title="Parlons de votre projet ou de votre besoin."
-        />
+        <SectionHead tag="CONTACT" title="Parlons de votre projet ou de votre besoin." />
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <ContactForm />
         </div>

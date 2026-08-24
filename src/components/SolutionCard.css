@@ -1,0 +1,21 @@
+.solution-card{
+  background: #EFEBFB;
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.solution-card-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--indigo);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.solution-card h3{ font-size: 17px; margin-bottom: 8px; }
+.solution-card p{ font-size: 14px; color: var(--text-soft); margin-bottom: 16px; }
+.solution-card-link{ font-size: 14px; font-weight: 700; color: var(--indigo); }
