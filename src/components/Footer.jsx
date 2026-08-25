@@ -6,7 +6,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="footer-grid">
         <div className="footer-brand">
-          <div className="logo" style={{ color: '#fff' }}>
+          <div className="footer-logo">
             <img src="/LOGO2.png" alt="Handelnex" className="footer-logo-img" />
           </div>
           <p>Des solutions qui connectent les opportunités.</p>
@@ -36,6 +36,12 @@ function Footer() {
           <Link to="/#contact">Contact</Link>
           <Link to="/mentions-legales">Mentions légales</Link>
           <Link to="/confidentialite">Politique de confidentialité</Link>
+        </div>
+
+        <div className="footer-col footer-contact">
+          <h4>CONTACT</h4>
+          <a href="mailto:contact@handelnex.com">contact@handelnex.com</a>
+          <a href="#contact">Nous contacter</a>
         </div>
       </div>
 
