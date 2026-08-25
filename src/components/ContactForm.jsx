@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Icon from './Icon.jsx'
 import './ContactForm.css'
 
 function ContactForm() {
@@ -36,15 +37,15 @@ function ContactForm() {
 
       <div className="info-list">
         <div className="info-card-contact">
-          <div className="info-ico">✉️</div>
+          <div className="info-ico info-ico-email"><Icon name="mail" size={22} /></div>
           <div><h3>E-mail</h3><p>contact@handelnex.com</p></div>
         </div>
         <div className="info-card-contact">
-          <div className="info-ico">📍</div>
+          <div className="info-ico info-ico-location"><Icon name="location_on" size={22} /></div>
           <div><h3>Siège</h3><p>Francfort, Allemagne — HANDELNEX UG</p></div>
         </div>
         <div className="info-card-contact">
-          <div className="info-ico">💬</div>
+          <div className="info-ico info-ico-response"><Icon name="chat_bubble" size={22} /></div>
           <div><h3>Réponse</h3><p>Notre équipe répond généralement sous 48h ouvrées.</p></div>
         </div>
       </div>

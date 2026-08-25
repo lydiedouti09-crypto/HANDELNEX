@@ -36,6 +36,31 @@ function Accueil() {
   const [solutions, setSolutions] = useState([])
   const [actualites, setActualites] = useState([])
   const [loading, setLoading] = useState(true)
+  const [infosPerPage, setInfosPerPage] = useState(4)
+  const [infoPage, setInfoPage] = useState(0)
+
+  useEffect(() => {
+    const updateInfosPerPage = () => {
+      setInfosPerPage(window.innerWidth < 600 ? 1 : window.innerWidth < 1000 ? 2 : 3)
+      setInfoPage(0)
+    }
+
+    updateInfosPerPage()
+    window.addEventListener('resize', updateInfosPerPage)
+    return () => window.removeEventListener('resize', updateInfosPerPage)
+  }, [])
+
+  const infoPages = []
+  for (let index = 0; index < infos.length; index += infosPerPage) {
+    infoPages.push(infos.slice(index, index + infosPerPage))
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setInfoPage((page) => (page + 1) % infoPages.length)
+    }, 4500)
+    return () => clearInterval(timer)
+  }, [infoPages.length])
 
   // --- Étape 2 : au chargement de la page, on va chercher les données
   useEffect(() => {
@@ -73,20 +98,49 @@ function Accueil() {
         >
           <Link to="/#nos-activites" className="btn-dark" style={{ marginTop: '26px' }}>En savoir plus →</Link>
         </SectionHead>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', maxWidth: '900px', margin: '0 auto' }}>
-          {infos.map((info) => <InfoCard key={info.title} {...info} />)}
+        <div className="info-carousel" aria-label="Présentation de HANDELNEX">
+          <div className="info-carousel-window">
+            <div className="info-carousel-track">
+              {infoPages[infoPage]?.map((info) => <InfoCard key={info.title} {...info} />)}
+            </div>
+          </div>
+          <div className="info-carousel-controls">
+            <div className="info-carousel-dots">
+              {infoPages.map((_, index) => (
+                <button
+                  type="button"
+                  key={index}
+                  className={`info-carousel-dot ${index === infoPage ? 'active' : ''}`}
+                  onClick={() => setInfoPage(index)}
+                  aria-label={`Afficher la page ${index + 1}`}
+                  aria-current={index === infoPage ? 'true' : undefined}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Nos activités */}
-      <section id="nos-activites" style={{ padding: '90px 8vw', background: 'var(--paper-alt)' }}>
-        <SectionHead
-          tag="NOS ACTIVITÉS"
-          title="Nos domaines d'activité"
-          description="Un ensemble de services complémentaires au cœur de HANDELNEX."
+      <section id="nos-activites" className="activities-section">
+        <video
+          src="/tech.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="activities-background"
         />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '18px' }}>
-          {activities.map((a, i) => <ActivityCard key={a.title} {...a} delay={(i % 4) * 100} />)}
+        <div className="activities-overlay" />
+        <div className="activities-content">
+          <SectionHead
+            tag="NOS ACTIVITÉS"
+            title="Nos domaines d'activité"
+            description="Un ensemble de services complémentaires au cœur de HANDELNEX."
+          />
+          <div className="activities-grid">
+            {activities.map((a, i) => <ActivityCard key={a.title} {...a} delay={(i % 4) * 100} />)}
+          </div>
         </div>
       </section>
 

@@ -39,6 +39,13 @@ const slides = [
   },
   {
     type: 'image',
+    image: '/voyage.jpg',
+    tag: 'Voyage & mobilité',
+    title: 'Une nouvelle façon de préparer votre voyage.',
+    desc: 'HANDELNEX vous propose une solution numérique moderne pour accompagner vos projets de voyage et accéder à la billetterie.'
+  },
+  {
+    type: 'image',
     image: '/image2.jpg',
     tag: 'Services & support',
     title: 'Un support client réactif et professionnel.',
@@ -57,6 +64,13 @@ const slides = [
   tag: 'Solution de voyage',
   title: 'Voyagez vers de nouvelles opportunités.',
   desc: 'Découvrez une solution numérique conçue pour simplifier la préparation et la gestion de votre projet de voyage.'
+},
+{
+  type: 'image',
+  image: '/voyage1.jpg',
+  tag: 'Mobilité & voyage',
+  title: 'Donner vie à vos projets de voyage.',
+  desc: 'Une expérience simple et moderne pour vous accompagner de la préparation jusqu’à votre départ.',
 },
 ]
 
@@ -154,7 +168,7 @@ function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <img src="/LOGO.png" alt="Handelnex" className="core-logo" />
+          <img src="/LOGO2.png" alt="Handelnex" className="core-logo" />
           <span>HANDELNEX</span>
         </motion.div>
 

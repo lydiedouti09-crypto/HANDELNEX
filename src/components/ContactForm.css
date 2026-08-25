@@ -38,23 +38,25 @@
 .info-list{ display: grid; gap: 16px; }
 .info-card-contact{
   border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 22px 24px;
+  border-radius: 20px;
+  padding: 32px 36px;
   display: flex;
   gap: 16px;
-  align-items: flex-start;
+  align-items: center;
+  min-height: 142px;
+  background: rgba(255, 255, 255, .45);
 }
 .info-ico{
-  width: 42px; height: 42px;
-  border-radius: 12px;
-  background: rgba(199,162,92,0.14);
-  color: var(--gold-deep);
+  width: 64px; height: 64px;
+  border-radius: 18px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
   flex-shrink: 0;
 }
-.info-card-contact h3{ font-size: 15.5px; margin-bottom: 4px; }
-.info-card-contact p{ font-size: 13.5px; color: var(--text-soft); }
+.info-ico-email { background: rgba(199, 162, 92, .16); color: var(--gold-deep); }
+.info-ico-location { background: rgba(232, 99, 107, .14); color: var(--coral); }
+.info-ico-response { background: rgba(58, 166, 224, .14); color: var(--sky); }
+.info-card-contact h3{ font-size: 17px; margin-bottom: 6px; }
+.info-card-contact p{ font-size: 15px; color: var(--text-soft); }
 
 @media (max-width: 900px){
   .contact-grid{ grid-template-columns: 1fr; }
