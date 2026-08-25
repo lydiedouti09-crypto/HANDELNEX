@@ -27,11 +27,6 @@ function AdminLogin() {
   return (
     <div className="admin-login">
       <form onSubmit={handleSubmit} className="admin-login-form">
-        <div className="admin-login-accent" aria-hidden="true">
-          <span className="accent-coral" />
-          <span className="accent-sky" />
-          <span className="accent-gold" />
-        </div>
         <h1>Bienvenue</h1>
         <p className="admin-login-subtitle">Connectez-vous à votre espace d'administration.</p>
         {error && <p className="admin-login-error">{error}</p>}
