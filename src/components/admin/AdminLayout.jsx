@@ -14,7 +14,7 @@ function AdminLayout({ children, title }) {
     <div className="admin-layout">
       <aside className="admin-sidebar">
         <div className="admin-sidebar-logo">
-          <img src="/LOGO2.png" alt="Handelnex" />
+          <img src="/LOGO.png" alt="Handelnex" />
           <span>HANDELNEX</span>
         </div>
 

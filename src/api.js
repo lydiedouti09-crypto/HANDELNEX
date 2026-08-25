@@ -136,3 +136,16 @@ export async function deleteActualite(id) {
   });
   return res.json();
 }
+// --- Messages de contact (admin) ---
+
+export async function getAdminMessages() {
+  const res = await authFetch(`${API_BASE}/contact/admin/all`);
+  return res.json();
+}
+
+export async function deleteMessage(id) {
+  const res = await authFetch(`${API_BASE}/contact/admin/${id}`, {
+    method: 'DELETE',
+  });
+  return res.json();
+}
