@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import './Footer.css'
+import { useTranslation } from 'react-i18next'
 
 function Footer() {
+  const { t } = useTranslation()
   return (
     <footer className="site-footer">
       <div className="footer-grid">
@@ -9,34 +11,34 @@ function Footer() {
           <div className="footer-logo">
             <img src="/LOGO2.png" alt="Handelnex" className="footer-logo-img" />
           </div>
-          <p>Des solutions qui connectent les opportunités.</p>
+          <p>{t('footer.tagline')}</p>
         </div>
 
         <div className="footer-col">
-          <h4>ENTREPRISE</h4>
-          <Link to="/#a-propos">À propos</Link>
-          <Link to="/#nos-activites">Nos activités</Link>
-          <Link to="/#notre-vision">Notre vision</Link>
+          <h4>{t('footer.entreprise')}</h4>
+          <Link to="/#a-propos">{t('nav.apropos')}</Link>
+          <Link to="/#nos-activites">{t('nav.activites')}</Link>
+          <Link to="/#notre-vision">{t('nav.vision')}</Link>
         </div>
 
         <div className="footer-col">
-          <h4>INFORMATIONS</h4>
-          <Link to="/#actualites">Actualités</Link>
-          <Link to="/confidentialite">Politique de confidentialité</Link>
-          <Link to="/#nos-solutions">Voyage & Billetterie</Link>
+          <h4>{t('footer.informations')}</h4>
+          <Link to="/#actualites">{t('footer.news')}</Link>
+          <Link to="/confidentialite">{t('footer.privacy')}</Link>
+          <Link to="/#nos-solutions">{t('footer.travel')}</Link>
         </div>
 
         <div className="footer-col footer-contact">
-          <h4>CONTACT</h4>
+          <h4>{t('nav.contact')}</h4>
           <a href="mailto:contact@handelnex.com">contact@handelnex.com</a>
-          <Link to="/#contact">Contact</Link>
-          <a href="#contact">Nous contacter</a>
+          <Link to="/#contact">{t('nav.contact')}</Link>
+          <a href="#contact">{t('footer.contact_us')}</a>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <span>© 2026 HANDELNEX EUROSYSTEM. Tous droits réservés.</span>
-        <span>Francfort, Allemagne · UG (haftungsbeschränkt)</span>
+        <span>© 2026 HANDELNEX EUROSYSTEM. {t('footer.rights')}</span>
+        <span>{t('footer.location')}</span>
       </div>
     </footer>
   )

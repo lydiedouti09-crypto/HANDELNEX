@@ -1,4 +1,10 @@
 const API_BASE = 'http://127.0.0.1:8000/api';
+const API_ORIGIN = 'http://127.0.0.1:8000';
+
+export function getMediaUrl(path) {
+  if (!path || !path.startsWith('/uploads/')) return path;
+  return `${API_ORIGIN}${path}`;
+}
 
 // --- Données publiques (site vitrine) ---
 
@@ -50,6 +56,55 @@ export function logout() {
 
 export function getToken() {
   return localStorage.getItem('admin_token');
+}
+
+export async function uploadImage(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+
+  const res = await fetch(`${API_BASE}/solutions/admin/image-upload`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${getToken()}` },
+    body: formData,
+  });
+
+  if (res.status === 401) {
+    logout();
+    window.location.href = '/admin/login';
+    throw new Error('Session expirée. Veuillez vous reconnecter.');
+  }
+
+  if (!res.ok) throw new Error('Erreur lors de l\'envoi de l\'image');
+  return res.json();
+}
+
+export async function uploadActualiteImage(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+
+  const res = await fetch(`${API_BASE}/actualites/admin/image-upload`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${getToken()}` },
+    body: formData,
+  });
+
+  if (res.status === 401) {
+    logout();
+    window.location.href = '/admin/login';
+    throw new Error('Session expirée. Veuillez vous reconnecter.');
+  }
+
+  if (!res.ok) {
+    let message = `Erreur ${res.status} lors de l'envoi de l'image`;
+    try {
+      const error = await res.json();
+      if (error.error) message = error.error;
+    } catch {
+      // La réponse peut être vide en cas de refus serveur ou de limite PHP.
+    }
+    throw new Error(message);
+  }
+  return res.json();
 }
 
 export function isLoggedIn() {

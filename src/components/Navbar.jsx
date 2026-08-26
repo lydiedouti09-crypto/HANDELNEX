@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './LanguageSwitcher.jsx'
 import './Navbar.css'
 
 function Navbar() {
+  const { t } = useTranslation()
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -17,13 +20,16 @@ function Navbar() {
         <img src="/LOGO2.png" alt="Handelnex" className="logo-img" />
       </Link>
       <div className="nav-links">
-        <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Accueil</NavLink>
-        <NavLink to="/#a-propos">À propos</NavLink>
-        <NavLink to="/#nos-activites">Nos activités</NavLink>
-        <NavLink to="/#nos-solutions">Nos solutions</NavLink>
-        <NavLink to="/#contact">Contact</NavLink>
+        <Link to="/">{t('nav.accueil')}</Link>
+        <Link to="/#a-propos">{t('nav.apropos')}</Link>
+        <Link to="/#nos-activites">{t('nav.activites')}</Link>
+        <Link to="/#nos-solutions">{t('nav.solutions')}</Link>
+        <Link to="/#contact">{t('nav.contact')}</Link>
       </div>
-      <Link to="/#nos-solutions" className="btn">Découvrir nos solutions →</Link>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <LanguageSwitcher />
+        <Link to="/#nos-solutions" className="btn">{t('nav.cta')} →</Link>
+      </div>
     </nav>
   )
 }

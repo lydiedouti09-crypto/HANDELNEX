@@ -1,97 +1,57 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import Icon from './Icon.jsx'
 import AnimatedTitle from './AnimatedTitle.jsx'
 import './Hero.css'
 
-// Chaque slide peut être une image OU une vidéo (type: 'video').
-// Pour une vidéo : media = '/ma-video.mp4', type: 'video'
-const slides = [
+// Les médias (images/vidéos) restent fixes, seul le texte change selon la langue.
+const slideMedia = [
   {
     type: 'video',
     media: '/bateau3.mp4',
-    tag: 'Technologies & numérique',
-    title: 'Des solutions qui connectent les opportunités.',
-    desc: "HANDELNEX développe et connecte des services dans les domaines de la logistique, du commerce et des solutions numériques.",
-  },
-  {
-    type: 'image',
-    image: '/voiture.avif',
-    tag: 'Commerce & intermédiation',
-    title: 'Le commerce en ligne, simplifié.',
-    desc: "Une intermédiation fiable pour vos achats, ventes et échanges de biens.",
-  },
- 
-  {
-    type: 'image',
-    image: '/image1.jpg',
-    tag: 'Transport & distribution',
-    title: 'Une distribution efficace, à l\'échelle internationale.',
-    desc: "Des solutions de transport et de distribution optimisées pour répondre à vos besoins.",
   },
   {
     type: 'video',
     media: '/bateau1.mp4',
-    tag: 'Logistique & livraison',
-    title: 'Une logistique fluide, à l\'échelle internationale.',
-    desc: "Des flux maîtrisés, de la prise en charge à la livraison finale, partout où vous en avez besoin.",
   },
   {
     type: 'image',
-    image: '/voyage.jpg',
-    tag: 'Voyage & mobilité',
-    title: 'Une nouvelle façon de préparer votre voyage.',
-    desc: 'HANDELNEX vous propose une solution numérique moderne pour accompagner vos projets de voyage et accéder à la billetterie.'
+    image: '/voiture.avif',
+  },
+  {
+    type: 'image',
+    image: '/image1.jpg',
   },
   {
     type: 'image',
     image: '/image2.jpg',
-    tag: 'Services & support',
-    title: 'Un support client réactif et professionnel.',
-    desc: "Un service client de qualité pour vous accompagner dans vos projets.",
   },
   {
     type: 'image',
     image: '/image3.jpg',
-    tag: 'Innovation & développement',
-    title: 'L\'innovation au cœur de nos solutions.',
-    desc: "Développement continu de solutions innovantes pour vous offrir les meilleurs résultats.",
   },
-  {
-  type: 'video',
-  media: '/avions2.mp4',
-  tag: 'Solution de voyage',
-  title: 'Voyagez vers de nouvelles opportunités.',
-  desc: 'Découvrez une solution numérique conçue pour simplifier la préparation et la gestion de votre projet de voyage.'
-},
-{
-  type: 'image',
-  image: '/voyage1.jpg',
-  tag: 'Mobilité & voyage',
-  title: 'Donner vie à vos projets de voyage.',
-  desc: 'Une expérience simple et moderne pour vous accompagner de la préparation jusqu’à votre départ.',
-},
 ]
 
-const pills = [
-  { icon: 'inventory_2', label: 'Logistique' },
-  { icon: 'shopping_cart', label: 'Commerce' },
-  { icon: 'local_shipping', label: 'Livraison' },
-  { icon: 'flight', label: 'Voyage' },
-  { icon: 'public', label: 'Import/Export' },
-  { icon: 'memory', label: 'Technologie' },
-]
+const pillIcons = ['inventory_2', 'shopping_cart', 'local_shipping', 'flight', 'public', 'memory']
+const pillKeys = ['logistique', 'commerce', 'livraison', 'voyage', 'importExport', 'technologie']
 
 function Hero() {
+  const { t } = useTranslation()
   const [current, setCurrent] = useState(0)
+
+  // Traductions du contenu texte, associées aux médias fixes ci-dessus
+  const slideTexts = t('hero.slides', { returnObjects: true })
+  const slides = slideMedia.map((media, i) => ({ ...media, ...slideTexts[i] }))
+  const pillLabels = t('hero.pills', { returnObjects: true })
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length)
     }, 6000)
     return () => clearInterval(timer)
-  }, [])
+  }, [slides.length])
 
   const goTo = (index) => {
     setCurrent((index + slides.length) % slides.length)
@@ -109,31 +69,17 @@ function Hero() {
             style={{ opacity: i === current ? 1 : 0 }}
           >
             {s.type === 'video' ? (
-              <video
-                src={s.media}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="hero-bg-media"
-              />
+              <video src={s.media} autoPlay muted loop playsInline className="hero-bg-media" />
             ) : (
-              <div
-                className="hero-bg-media hero-bg-image"
-                style={{ backgroundImage: `url(${s.image})` }}
-              />
+              <div className="hero-bg-media hero-bg-image" style={{ backgroundImage: `url(${s.image})` }} />
             )}
           </div>
         ))}
         <div className="hero-overlay"></div>
       </div>
 
-      <button className="hero-arrow left" onClick={() => goTo(current - 1)} aria-label="Slide précédent">
-        ‹
-      </button>
-      <button className="hero-arrow right" onClick={() => goTo(current + 1)} aria-label="Slide suivant">
-        ›
-      </button>
+      <button className="hero-arrow left" onClick={() => goTo(current - 1)} aria-label="Previous slide">‹</button>
+      <button className="hero-arrow right" onClick={() => goTo(current + 1)} aria-label="Next slide">›</button>
 
       <div className="hero-text">
         <AnimatePresence mode="wait">
@@ -152,8 +98,8 @@ function Hero() {
         </AnimatePresence>
 
         <div className="hero-actions">
-          <Link to="/#a-propos" className="btn">Découvrir Handelnex →</Link>
-          <Link to="/nos-solutions" className="btn btn-ghost">Nos solutions</Link>
+          <Link to="/#a-propos" className="btn">{t('hero.btn_discover')} →</Link>
+          <Link to="/nos-solutions" className="btn btn-ghost">{t('hero.btn_solutions')}</Link>
         </div>
       </div>
 
@@ -168,25 +114,23 @@ function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <img src="/LOGO2.png" alt="Handelnex" className="core-logo" />
+          <img src="/LOGO.png" alt="Handelnex" className="core-logo" />
           <span>HANDELNEX</span>
         </motion.div>
 
         <div className="orbit-wrap">
-          {pills.map((p, i) => (
+          {pillIcons.map((icon, i) => (
             <div
-              key={p.label}
+              key={pillKeys[i]}
               className="orbit-item"
               style={{
-                '--angle': `${(360 / pills.length) * i}deg`,
+                '--angle': `${(360 / pillIcons.length) * i}deg`,
                 '--radius': '190px',
+                animationDelay: `${-(i / pillIcons.length) * 24}s`,
               }}
             >
-              <motion.div
-                className="pill"
-                whileHover={{ scale: 1.1 }}
-              >
-                <Icon name={p.icon} size={16} /> {p.label}
+              <motion.div className="pill" whileHover={{ scale: 1.1 }}>
+                <Icon name={icon} size={16} /> {pillLabels[pillKeys[i]]}
               </motion.div>
             </div>
           ))}
@@ -194,14 +138,14 @@ function Hero() {
       </div>
 
       <div className="hero-footer">
-        <span className="scroll-label">DÉFILER</span>
+        <span className="scroll-label">{t('hero.scroll')}</span>
         <div className="dots">
           {slides.map((_, i) => (
             <button
               key={i}
               className={`dot ${i === current ? 'active' : ''}`}
               onClick={() => goTo(i)}
-              aria-label={`Aller au slide ${i + 1}`}
+              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
@@ -211,3 +155,4 @@ function Hero() {
 }
 
 export default Hero
+

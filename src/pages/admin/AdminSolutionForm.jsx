@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAdminSolutions, createSolution, updateSolution } from '../../api'
+import { getAdminSolutions, createSolution, updateSolution, uploadImage } from '../../api'
 import AdminLayout from '../../components/admin/AdminLayout'
 
 const emptyForm = {
@@ -16,6 +16,7 @@ function AdminSolutionForm() {
   const [form, setForm] = useState(emptyForm)
   const [loading, setLoading] = useState(isEdit)
   const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState(false)
 
   useEffect(() => {
     if (!isEdit) return
@@ -31,6 +32,29 @@ function AdminSolutionForm() {
   function handleChange(e) {
     const { name, value } = e.target
     setForm((f) => ({ ...f, [name]: value }))
+  }
+
+  async function handleImageChange(e) {
+    const file = e.target.files[0]
+    if (!file) return
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert("L'image doit faire moins de 10 Mo")
+      e.target.value = ''
+      return
+    }
+
+    setUploading(true)
+    try {
+      const data = await uploadImage(file)
+      setForm((current) => ({ ...current, image: data.url }))
+    } catch (err) {
+      alert("Erreur lors de l'envoi de l'image")
+      console.error(err)
+    } finally {
+      setUploading(false)
+      e.target.value = ''
+    }
   }
 
   async function handleSubmit(e) {
@@ -79,6 +103,9 @@ function AdminSolutionForm() {
         <label>
           Image (chemin ou URL)
           <input name="image" value={form.image} onChange={handleChange} />
+          <input type="file" accept="image/*" onChange={handleImageChange} disabled={uploading} />
+          {uploading && <small>Envoi de l'image...</small>}
+          {form.image && <img src={form.image} alt="Aperçu" style={{ maxWidth: '220px', maxHeight: '140px', objectFit: 'cover' }} />}
         </label>
         <label>
           Icône

@@ -1,7 +1,9 @@
 import ValueItem from './ValueItem.jsx'
 import './VisionSection.css'
+import { useTranslation } from 'react-i18next'
 
-const values = [
+
+const valueDefinitions = [
   { icon: 'construction', title: 'Innovation', color: 'var(--gold)' },
   { icon: 'handshake', title: 'Confiance', color: 'var(--mint)' },
   { icon: 'public', title: 'International', color: 'var(--sky)' },
@@ -9,6 +11,8 @@ const values = [
 ]
 
 function VisionSection() {
+  const { t } = useTranslation()
+  const translatedValues = t('vision.values', { returnObjects: true })
   return (
     <section id="notre-vision" className="vision-section">
       <video
@@ -22,19 +26,18 @@ function VisionSection() {
       <div className="vision-overlay"></div>
 
       <div className="vision-content">
-        <div className="vision-tag">NOTRE VISION</div>
+        <div className="vision-tag">{t('vision.tag')}</div>
         <h1 className="vision-title">
-          Connecter les services.<br />
-          <span className="accent">Créer les opportunités.</span>
+          {t('vision.title1')}<br />
+          <span className="accent">{t('vision.title2')}</span>
         </h1>
         <p className="vision-desc">
-          HANDELNEX ambitionne de développer des services et des solutions capables
-          d'accompagner les besoins d'un environnement de plus en plus connecté.
+          {t('vision.desc')}
         </p>
 
         <div className="values-row">
-          {values.map((v) => (
-            <ValueItem key={v.title} {...v} />
+          {valueDefinitions.map((value) => (
+            <ValueItem key={value.title} {...value} title={translatedValues[value.title.toLowerCase()]} />
           ))}
         </div>
       </div>
