@@ -32,7 +32,6 @@ function Footer() {
           <h4>{t('nav.contact')}</h4>
           <a href="mailto:contact@handelnex.com">contact@handelnex.com</a>
           <Link to="/#contact">{t('nav.contact')}</Link>
-          <a href="#contact">{t('footer.contact_us')}</a>
         </div>
       </div>
 

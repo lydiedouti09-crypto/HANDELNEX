@@ -26,7 +26,6 @@ function VisionSection() {
       <div className="vision-overlay"></div>
 
       <div className="vision-content">
-        <div className="vision-tag">{t('vision.tag')}</div>
         <h1 className="vision-title">
           {t('vision.title1')}<br />
           <span className="accent">{t('vision.title2')}</span>

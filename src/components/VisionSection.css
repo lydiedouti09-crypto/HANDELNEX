@@ -28,15 +28,6 @@
   z-index: 2;
 }
 
-.vision-tag{
-  display: inline-block;
-  font-size: 12.5px;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  color: var(--gold);
-  margin-bottom: 26px;
-}
-
 .vision-title{
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.15;

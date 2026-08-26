@@ -13,16 +13,20 @@ const slideMedia = [
     media: '/bateau3.mp4',
   },
   {
+    type: 'image',
+    image: '/voiture.avif',
+  },
+  {
     type: 'video',
     media: '/bateau1.mp4',
   },
   {
     type: 'image',
-    image: '/voiture.avif',
+    image: '/image1.jpg',
   },
   {
-    type: 'image',
-    image: '/image1.jpg',
+    type: 'video',
+    media: '/avions2.mp4',
   },
   {
     type: 'image',
@@ -32,6 +36,11 @@ const slideMedia = [
     type: 'image',
     image: '/image3.jpg',
   },
+  {
+    type: 'image',
+    image: '/voyage.jpg',
+  },
+
 ]
 
 const pillIcons = ['inventory_2', 'shopping_cart', 'local_shipping', 'flight', 'public', 'memory']
@@ -99,7 +108,6 @@ function Hero() {
 
         <div className="hero-actions">
           <Link to="/#a-propos" className="btn">{t('hero.btn_discover')} →</Link>
-          <Link to="/nos-solutions" className="btn btn-ghost">{t('hero.btn_solutions')}</Link>
         </div>
       </div>
 
@@ -114,7 +122,7 @@ function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <img src="/LOGO.png" alt="Handelnex" className="core-logo" />
+          <img src="/LOGO2.png" alt="Handelnex" className="core-logo" />
           <span>HANDELNEX</span>
         </motion.div>
 

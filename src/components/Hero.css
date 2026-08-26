@@ -55,6 +55,7 @@
 
 .hero-text {
   transform: translateY(-50px);
+  max-width: 620px;
 }
 
 .hero-arrow{
@@ -111,7 +112,7 @@
   margin-bottom: 30px;
 }
 
-.hero-actions{ display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-actions{ display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 
 .btn{
   display: inline-flex;

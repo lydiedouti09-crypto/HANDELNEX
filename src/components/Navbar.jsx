@@ -26,9 +26,8 @@ function Navbar() {
         <Link to="/#nos-solutions">{t('nav.solutions')}</Link>
         <Link to="/#contact">{t('nav.contact')}</Link>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div className="navbar-actions">
         <LanguageSwitcher />
-        <Link to="/#nos-solutions" className="btn">{t('nav.cta')} →</Link>
       </div>
     </nav>
   )

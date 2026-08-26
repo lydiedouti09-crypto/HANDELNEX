@@ -35,6 +35,12 @@
   color: var(--navy-deep);
 }
 
+.navbar-actions{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .nav-links a{
   position: relative;
   color: var(--navy-deep);
@@ -66,4 +72,8 @@
 
 @media (max-width: 860px){
   .nav-links{ display: none; }
+
+  .navbar{ padding: 12px 6vw; }
+
+  .logo-img{ height: 54px; }
 }

@@ -10,7 +10,7 @@ const resources = {
         cta: 'Découvrir nos solutions',
       },
       hero: {
-        btn_discover: 'Découvrir Handelnex', btn_solutions: 'Nos solutions', scroll: 'DÉFILER',
+        btn_discover: 'Nous découvrir', btn_solutions: 'Nos solutions', scroll: 'DÉFILER',
         slides: [
           { tag: 'Technologies & numérique', title: 'Des solutions qui connectent les opportunités.', desc: "HANDELNEX développe et connecte des services dans les domaines de la logistique, du commerce et des solutions numériques." },
           { tag: 'Logistique & livraison', title: "Une logistique fluide, à l'échelle internationale.", desc: "Des flux maîtrisés, de la prise en charge à la livraison finale, partout où vous en avez besoin." },
@@ -89,7 +89,7 @@ const resources = {
         cta: 'Discover our solutions',
       },
       hero: {
-        btn_discover: 'Discover Handelnex', btn_solutions: 'Our solutions', scroll: 'SCROLL',
+        btn_discover: 'Discover us', btn_solutions: 'Our solutions', scroll: 'SCROLL',
         slides: [
           { tag: 'Technology & Digital', title: 'Solutions that connect opportunities.', desc: "HANDELNEX develops and connects services in logistics, commerce, and digital solutions." },
           { tag: 'Logistics & Delivery', title: 'Seamless logistics, on an international scale.', desc: "Managed flows, from pickup to final delivery, wherever you need it." },
@@ -168,7 +168,7 @@ const resources = {
         cta: 'Lösungen entdecken',
       },
       hero: {
-        btn_discover: 'Handelnex entdecken', btn_solutions: 'Unsere Lösungen', scroll: 'SCROLLEN',
+        btn_discover: 'Uns entdecken', btn_solutions: 'Unsere Lösungen', scroll: 'SCROLLEN',
         slides: [
           { tag: 'Technologie & Digital', title: 'Lösungen, die Chancen verbinden.', desc: "HANDELNEX entwickelt und verbindet Dienstleistungen in den Bereichen Logistik, Handel und digitale Lösungen." },
           { tag: 'Logistik & Lieferung', title: 'Reibungslose Logistik auf internationaler Ebene.', desc: "Kontrollierte Abläufe, von der Abholung bis zur Endlieferung, wo immer Sie sie brauchen." },
