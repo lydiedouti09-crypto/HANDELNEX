@@ -4,7 +4,7 @@ import { getAdminActualites, createActualite, updateActualite, uploadActualiteIm
 import AdminLayout from '../../components/admin/AdminLayout'
 
 const emptyForm = {
-  titre: '', slug: '', contenu: '', image: '',
+  titre: '', contenu: '', titreFr: '', titreEn: '', titreDe: '', contenuFr: '', contenuEn: '', contenuDe: '', image: '', imageFr: '', imageEn: '', imageDe: '',
   statut: 'brouillon', datePublication: '',
 }
 
@@ -22,7 +22,12 @@ function AdminActualiteForm() {
     async function load() {
       const all = await getAdminActualites()
       const a = all.find((x) => x.id === Number(id))
-      if (a) setForm({ ...emptyForm, ...a })
+      if (a) setForm({
+        ...emptyForm,
+        ...a,
+        titreFr: a.titreFr || a.titre || '',
+        contenuFr: a.contenuFr || a.contenu || '',
+      })
       setLoading(false)
     }
     load()
@@ -33,7 +38,7 @@ function AdminActualiteForm() {
     setForm((f) => ({ ...f, [name]: value }))
   }
 
-  async function handleImageChange(e) {
+  async function handleImageChange(e, fieldName) {
     const file = e.target.files[0]
     if (!file) return
 
@@ -46,7 +51,7 @@ function AdminActualiteForm() {
     setUploading(true)
     try {
       const data = await uploadActualiteImage(file)
-      setForm((current) => ({ ...current, image: data.url }))
+      setForm((current) => ({ ...current, [fieldName]: data.url }))
     } catch (err) {
       alert(err.message)
       console.error(err)
@@ -59,11 +64,12 @@ function AdminActualiteForm() {
   async function handleSubmit(e) {
     e.preventDefault()
     setSaving(true)
+    const data = { ...form, titre: form.titreFr, contenu: form.contenuFr }
     try {
       if (isEdit) {
-        await updateActualite(id, form)
+        await updateActualite(id, data)
       } else {
-        await createActualite(form)
+        await createActualite(data)
       }
       navigate('/admin/actualites')
     } catch (err) {
@@ -80,24 +86,41 @@ function AdminActualiteForm() {
     <AdminLayout title={isEdit ? "Modifier l'actualité" : 'Nouvelle actualité'}>
       <form className="admin-form" onSubmit={handleSubmit}>
         <label>
-          Titre
-          <input name="titre" value={form.titre} onChange={handleChange} required />
+          Titre français
+          <input name="titreFr" value={form.titreFr} onChange={handleChange} required />
         </label>
         <label>
-          Slug (URL)
-          <input name="slug" value={form.slug} onChange={handleChange} required />
+          Titre anglais
+          <input name="titreEn" value={form.titreEn} onChange={handleChange} />
         </label>
         <label>
-          Contenu
-          <textarea name="contenu" value={form.contenu} onChange={handleChange} rows={6} required />
+          Titre allemand
+          <input name="titreDe" value={form.titreDe} onChange={handleChange} />
         </label>
         <label>
-          Image (chemin ou URL)
-          <input name="image" value={form.image} onChange={handleChange} required />
-          <input type="file" accept="image/*" onChange={handleImageChange} disabled={uploading} />
-          {uploading && <small>Envoi de l'image...</small>}
-          {form.image && <img src={form.image.startsWith('/uploads/') ? `http://127.0.0.1:8000${form.image}` : form.image} alt="Aperçu" style={{ maxWidth: '220px', maxHeight: '140px', objectFit: 'cover' }} />}
+          Contenu en français
+          <textarea name="contenuFr" value={form.contenuFr} onChange={handleChange} rows={6} required />
         </label>
+        <label>
+          Contenu en anglais
+          <textarea name="contenuEn" value={form.contenuEn} onChange={handleChange} rows={6} />
+        </label>
+        <label>
+          Contenu en allemand
+          <textarea name="contenuDe" value={form.contenuDe} onChange={handleChange} rows={6} />
+        </label>
+        {[
+          ['imageFr', 'Image française'],
+          ['imageEn', 'Image anglaise'],
+          ['imageDe', 'Image allemande'],
+        ].map(([fieldName, label]) => (
+          <label key={fieldName}>
+            {label} (chemin ou URL)
+            <input name={fieldName} value={form[fieldName]} onChange={handleChange} />
+            <input type="file" accept="image/*" onChange={(event) => handleImageChange(event, fieldName)} disabled={uploading} />
+            {form[fieldName] && <img src={form[fieldName].startsWith('/uploads/') ? `http://127.0.0.1:8000${form[fieldName]}` : form[fieldName]} alt={`Aperçu ${label}`} style={{ maxWidth: '220px', maxHeight: '140px', objectFit: 'cover' }} />}
+          </label>
+        ))}
         <label>
           Date de publication
           <input type="date" name="datePublication" value={form.datePublication} onChange={handleChange} required />

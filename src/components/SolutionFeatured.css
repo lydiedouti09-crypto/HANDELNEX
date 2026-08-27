@@ -111,7 +111,18 @@
 }
 
 @media (max-width: 800px){
-  .solution-featured{ grid-template-columns: 1fr; padding: 40px 26px; }
+  .solution-featured{
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 40px 26px;
+  }
   .solution-text p{ margin-bottom: 24px; }
   .app-screenshot{ max-height: none; width: 100%; }
+}
+
+@media (max-width: 600px){
+  .solution-featured{ padding: 28px 20px; border-radius: 16px; }
+  .solution-actions{ align-items: stretch; flex-direction: column; }
+  .solution-actions > *{ justify-content: center; width: 100%; }
+  .app-screenshot{ border-radius: 12px; }
 }

@@ -1,28 +1,64 @@
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './LanguageSwitcher.css'
 
 const languages = [
-  { code: 'fr', label: 'FR' },
-  { code: 'en', label: 'EN' },
-  { code: 'de', label: 'DE' },
+  { code: 'fr', label: 'FR', name: 'Français' },
+  { code: 'en', label: 'EN', name: 'English' },
+  { code: 'de', label: 'DE', name: 'Deutsch' },
 ]
 
-function LanguageSwitcher() {
+function LanguageSwitcher({ onLanguageChange }) {
   const { i18n } = useTranslation()
+  const [open, setOpen] = useState(false)
+  const switcherRef = useRef(null)
+  const activeLanguage = languages.find((language) => language.code === i18n.language) || languages[0]
+
+  useEffect(() => {
+    const closeMenu = (event) => {
+      if (!switcherRef.current?.contains(event.target)) setOpen(false)
+    }
+
+    document.addEventListener('click', closeMenu)
+    return () => document.removeEventListener('click', closeMenu)
+  }, [])
+
+  const changeLanguage = (code) => {
+    i18n.changeLanguage(code)
+    setOpen(false)
+    onLanguageChange?.()
+  }
 
   return (
-    <div className="lang-switcher">
-      <select
+    <div className="lang-switcher" ref={switcherRef}>
+      <button
+        type="button"
+        className="lang-trigger"
         aria-label="Choisir la langue"
-        value={i18n.language}
-        onChange={(event) => i18n.changeLanguage(event.target.value)}
+        aria-expanded={open}
+        onClick={() => setOpen((isOpen) => !isOpen)}
       >
-        {languages.map((lang) => (
-          <option key={lang.code} value={lang.code}>
-            {lang.label}
-          </option>
-        ))}
-      </select>
+        <span className={`lang-flag flag-${activeLanguage.code}`} aria-hidden="true"></span>
+        <span>{activeLanguage.label}</span>
+        <span className="lang-chevron" aria-hidden="true"></span>
+      </button>
+
+      {open && (
+        <div className="lang-menu">
+          {languages.map((language) => (
+            <button
+              type="button"
+              key={language.code}
+              className={`lang-option ${language.code === activeLanguage.code ? 'active' : ''}`}
+              onClick={() => changeLanguage(language.code)}
+            >
+              <span className={`lang-flag flag-${language.code}`} aria-hidden="true"></span>
+              <strong>{language.label}</strong>
+              <span>{language.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

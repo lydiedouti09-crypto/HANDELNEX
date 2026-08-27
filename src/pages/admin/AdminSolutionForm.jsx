@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAdminSolutions, createSolution, updateSolution, uploadImage } from '../../api'
+import { getAdminSolutions, createSolution, updateSolution, uploadImage, getMediaUrl } from '../../api'
 import AdminLayout from '../../components/admin/AdminLayout'
 
 const emptyForm = {
-  nom: '', slug: '', description: '', descriptionComplete: '',
-  image: '', icone: '', categorie: '', lienGooglePlay: '',
+  nom: '', description: '', nomFr: '', nomEn: '', nomDe: '', descriptionFr: '', descriptionEn: '', descriptionDe: '', descriptionComplete: '',
+  image: '', imageFr: '', imageEn: '', imageDe: '', icone: '', categorie: '', lienGooglePlay: '',
   statut: 'brouillon', ordreAffichage: 0,
 }
 
@@ -23,7 +23,12 @@ function AdminSolutionForm() {
     async function load() {
       const all = await getAdminSolutions()
       const s = all.find((x) => x.id === Number(id))
-      if (s) setForm({ ...emptyForm, ...s })
+      if (s) setForm({
+        ...emptyForm,
+        ...s,
+        nomFr: s.nomFr || s.nom || '',
+        descriptionFr: s.descriptionFr || s.description || '',
+      })
       setLoading(false)
     }
     load()
@@ -34,7 +39,7 @@ function AdminSolutionForm() {
     setForm((f) => ({ ...f, [name]: value }))
   }
 
-  async function handleImageChange(e) {
+  async function handleImageChange(e, fieldName) {
     const file = e.target.files[0]
     if (!file) return
 
@@ -47,7 +52,7 @@ function AdminSolutionForm() {
     setUploading(true)
     try {
       const data = await uploadImage(file)
-      setForm((current) => ({ ...current, image: data.url }))
+      setForm((current) => ({ ...current, [fieldName]: data.url }))
     } catch (err) {
       alert("Erreur lors de l'envoi de l'image")
       console.error(err)
@@ -60,11 +65,12 @@ function AdminSolutionForm() {
   async function handleSubmit(e) {
     e.preventDefault()
     setSaving(true)
+    const data = { ...form, nom: form.nomFr, description: form.descriptionFr }
     try {
       if (isEdit) {
-        await updateSolution(id, form)
+        await updateSolution(id, data)
       } else {
-        await createSolution(form)
+        await createSolution(data)
       }
       navigate('/admin/solutions')
     } catch (err) {
@@ -81,36 +87,45 @@ function AdminSolutionForm() {
     <AdminLayout title={isEdit ? 'Modifier la solution' : 'Nouvelle solution'}>
       <form className="admin-form" onSubmit={handleSubmit}>
         <label>
-          Nom
-          <input name="nom" value={form.nom} onChange={handleChange} required />
+          Nom français
+          <input name="nomFr" value={form.nomFr} onChange={handleChange} required />
         </label>
         <label>
-          Slug (URL, ex: voyage-billetterie)
-          <input name="slug" value={form.slug} onChange={handleChange} required />
+          Nom anglais
+          <input name="nomEn" value={form.nomEn} onChange={handleChange} />
+        </label>
+        <label>
+          Nom allemand
+          <input name="nomDe" value={form.nomDe} onChange={handleChange} />
         </label>
         <label>
           Catégorie
           <input name="categorie" value={form.categorie} onChange={handleChange} />
         </label>
         <label>
-          Description courte
-          <textarea name="description" value={form.description} onChange={handleChange} rows={2} />
+          Description courte en français
+          <textarea name="descriptionFr" value={form.descriptionFr} onChange={handleChange} rows={2} required />
         </label>
         <label>
-          Description complète
-          <textarea name="descriptionComplete" value={form.descriptionComplete} onChange={handleChange} rows={4} />
+          Description courte en anglais
+          <textarea name="descriptionEn" value={form.descriptionEn} onChange={handleChange} rows={2} />
         </label>
         <label>
-          Image (chemin ou URL)
-          <input name="image" value={form.image} onChange={handleChange} />
-          <input type="file" accept="image/*" onChange={handleImageChange} disabled={uploading} />
-          {uploading && <small>Envoi de l'image...</small>}
-          {form.image && <img src={form.image} alt="Aperçu" style={{ maxWidth: '220px', maxHeight: '140px', objectFit: 'cover' }} />}
+          Description courte en allemand
+          <textarea name="descriptionDe" value={form.descriptionDe} onChange={handleChange} rows={2} />
         </label>
-        <label>
-          Icône
-          <input name="icone" value={form.icone} onChange={handleChange} />
-        </label>
+        {[
+          ['imageFr', 'Image française'],
+          ['imageEn', 'Image anglaise'],
+          ['imageDe', 'Image allemande'],
+        ].map(([fieldName, label]) => (
+          <label key={fieldName}>
+            {label} (chemin ou URL)
+            <input name={fieldName} value={form[fieldName]} onChange={handleChange} />
+            <input type="file" accept="image/*" onChange={(event) => handleImageChange(event, fieldName)} disabled={uploading} />
+            {form[fieldName] && <img src={getMediaUrl(form[fieldName])} alt={`Aperçu ${label}`} style={{ maxWidth: '220px', maxHeight: '140px', objectFit: 'cover' }} />}
+          </label>
+        ))}
         <label>
           Lien Google Play
           <input name="lienGooglePlay" value={form.lienGooglePlay} onChange={handleChange} />

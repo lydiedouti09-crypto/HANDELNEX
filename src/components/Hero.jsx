@@ -17,6 +17,10 @@ const slideMedia = [
     image: '/voiture.avif',
   },
   {
+    type: 'image',
+    image: '/image8.jpg',
+  },
+  {
     type: 'video',
     media: '/bateau1.mp4',
   },
@@ -40,6 +44,11 @@ const slideMedia = [
     type: 'image',
     image: '/voyage.jpg',
   },
+  {
+    type: 'video',
+    media: '/avions3.mp4',
+  },
+  
 
 ]
 
@@ -52,7 +61,13 @@ function Hero() {
 
   // Traductions du contenu texte, associées aux médias fixes ci-dessus
   const slideTexts = t('hero.slides', { returnObjects: true })
-  const slides = slideMedia.map((media, i) => ({ ...media, ...slideTexts[i] }))
+  const fallbackSlide = { title: 'Des solutions qui connectent les opportunités.', desc: '' }
+  const slides = slideMedia.map((media, i) => ({
+    ...media,
+    ...(Array.isArray(slideTexts) && slideTexts.length > 0
+      ? slideTexts[i % slideTexts.length]
+      : fallbackSlide),
+  }))
   const pillLabels = t('hero.pills', { returnObjects: true })
 
   useEffect(() => {
@@ -78,9 +93,20 @@ function Hero() {
             style={{ opacity: i === current ? 1 : 0 }}
           >
             {s.type === 'video' ? (
-              <video src={s.media} autoPlay muted loop playsInline className="hero-bg-media" />
+              <video
+                src={s.media}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="hero-bg-media"
+                onError={(event) => { event.currentTarget.style.display = 'none' }}
+              />
             ) : (
-              <div className="hero-bg-media hero-bg-image" style={{ backgroundImage: `url(${s.image})` }} />
+              <div
+                className="hero-bg-media hero-bg-image"
+                style={{ backgroundImage: `url(${s.image})` }}
+              />
             )}
           </div>
         ))}

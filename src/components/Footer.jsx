@@ -28,11 +28,6 @@ function Footer() {
           <Link to="/#nos-solutions">{t('footer.travel')}</Link>
         </div>
 
-        <div className="footer-col footer-contact">
-          <h4>{t('nav.contact')}</h4>
-          <a href="mailto:contact@handelnex.com">contact@handelnex.com</a>
-          <Link to="/#contact">{t('nav.contact')}</Link>
-        </div>
       </div>
 
       <div className="footer-bottom">

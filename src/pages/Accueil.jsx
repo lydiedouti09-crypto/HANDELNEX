@@ -11,6 +11,7 @@ import ContactForm from '../components/ContactForm.jsx'
 import SectionHead from '../components/SectionHead.jsx'
 import VisionSection from '../components/VisionSection.jsx'
 import { fetchSolutions, fetchActualites } from '../api.js'
+import './Accueil.css'
 
 const infoIcons = ['hub', 'trending_up', 'public', 'location_city']
 const infoColors = ['var(--gold)', 'var(--coral)', 'var(--sky)', 'var(--indigo)']
@@ -35,6 +36,8 @@ function Accueil() {
     if (location.hash) {
       const el = document.querySelector(location.hash)
       if (el) el.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }, [location])
 
@@ -47,11 +50,11 @@ function Accueil() {
       <Hero />
 
       {/* À propos */}
-      <section id="a-propos" style={{ padding: '90px 8vw' }}>
+      <section id="a-propos" className="about-section">
         <SectionHead tag={t('apropos.tag')} title={t('apropos.title')} description={t('apropos.desc')}>
           <Link to="/#nos-activites" className="btn-dark" style={{ marginTop: '26px' }}>{t('apropos.btn')} →</Link>
         </SectionHead>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', maxWidth: '900px', margin: '0 auto' }}>
+        <div className="about-grid">
           {infos.map((info, i) => (
             <InfoCard key={info.title} icon={infoIcons[i]} title={info.title} color={infoColors[i]} />
           ))}
@@ -73,7 +76,7 @@ function Accueil() {
       </section>
 
       {/* Nos solutions */}
-      <section id="nos-solutions" style={{ padding: '90px 8vw' }}>
+      <section id="nos-solutions" className="solutions-section">
         <SectionHead tag={t('solutions.tag')} title={t('solutions.title')} description={t('solutions.desc')} />
 
         {loading && <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>{t('solutions.loading')}</p>}
@@ -82,19 +85,19 @@ function Accueil() {
         )}
         {premiereSolution && <SolutionFeatured {...premiereSolution} />}
         {autresSolutions.length > 0 && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '24px' }}>
+          <div className="solutions-grid">
             {autresSolutions.map((s) => <SolutionCard key={s.slug} {...s} />)}
           </div>
         )}
       </section>
 
       {/* Actualités */}
-      <section id="actualites" style={{ padding: '90px 8vw', background: 'var(--paper-alt)' }}>
+      <section id="actualites" className="news-section">
         <SectionHead tag={t('actualites.tag')} title={t('actualites.title')} description={t('actualites.desc')} />
         {!loading && actualites.length === 0 && (
           <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>{t('actualites.empty')}</p>
         )}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+        <div className="news-grid">
           {actualites.map((a) => <ActualiteCard key={a.slug} {...a} />)}
         </div>
       </section>
@@ -102,7 +105,7 @@ function Accueil() {
       <VisionSection />
 
       {/* Contact */}
-      <section id="contact" style={{ padding: '90px 8vw', background: 'var(--paper-alt)' }}>
+      <section id="contact" className="contact-section">
         <SectionHead tag={t('contact.tag')} title={t('contact.title')} />
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <ContactForm />

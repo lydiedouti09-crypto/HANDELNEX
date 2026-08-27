@@ -17,4 +17,5 @@
   color: var(--text-soft);
   margin-top: 14px;
   font-size: 16px;
+  white-space: pre-line;
 }

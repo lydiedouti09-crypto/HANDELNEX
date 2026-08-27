@@ -9,7 +9,7 @@ function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // À connecter plus tard à l'API Symfony (POST /api/contact)
+    // À connecter plus tard à l'API Symfony
     setSent(true)
   }
 

@@ -7,7 +7,9 @@
 
 .footer-grid{
   display: grid;
-  grid-template-columns: 1.45fr repeat(3, 1fr);
+  grid-template-columns: minmax(220px, 1.45fr) repeat(2, minmax(180px, 1fr));
+  max-width: 1180px;
+  margin: 0 auto;
   gap: 36px;
   padding-bottom: 48px;
   border-bottom: 1px solid #d8d8d8;
@@ -60,9 +62,10 @@
   font-weight: 500;
   letter-spacing: 0.04em;
 }
-.footer-brand,
 .footer-col{
-  text-align: center;
+  width: min(100%, 220px);
+  justify-self: center;
+  text-align: left;
 }
 
 .footer-brand{
