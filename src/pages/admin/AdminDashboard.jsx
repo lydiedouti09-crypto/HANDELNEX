@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getAdminSolutions, getAdminActualites } from '../../api'
 import AdminLayout from '../../components/admin/AdminLayout'
 import Icon from '../../components/Icon.jsx'
+import AdminLoading from '../../components/admin/AdminLoading'
 
 function AdminDashboard() {
   const [stats, setStats] = useState({ solutions: null, actualites: null })
@@ -28,6 +29,7 @@ function AdminDashboard() {
 
   return (
     <AdminLayout title="Tableau de bord">
+      <AdminLoading visible={loading} />
       <div className="admin-stats-grid">
         <div className="admin-stat-card">
           <div className="admin-stat-icon" style={{ background: '#E6EEFB', color: '#173A63' }}>

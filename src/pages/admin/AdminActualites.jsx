@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getAdminActualites, deleteActualite } from '../../api'
 import AdminLayout from '../../components/admin/AdminLayout'
+import ConfirmDialog from '../../components/ConfirmDialog'
+import AdminLoading from '../../components/admin/AdminLoading'
 
 function AdminActualites() {
   const [actualites, setActualites] = useState([])
   const [loading, setLoading] = useState(true)
+  const [toDelete, setToDelete] = useState(null) // { id, titre } ou null
 
   async function load() {
     setLoading(true)
@@ -18,23 +21,22 @@ function AdminActualites() {
     load()
   }, [])
 
-  async function handleDelete(id, titre) {
-    if (!confirm(`Supprimer l'actualité "${titre}" ?`)) return
-    await deleteActualite(id)
+  async function confirmDelete() {
+    await deleteActualite(toDelete.id)
+    setToDelete(null)
     load()
   }
 
   return (
     <AdminLayout title="Actualités">
+      <AdminLoading visible={loading} />
       <div className="admin-toolbar">
         <Link to="/admin/actualites/new" className="admin-btn-primary">
           + Ajouter une actualité
         </Link>
       </div>
 
-      {loading ? (
-        <p>Chargement...</p>
-      ) : (
+      {!loading && (
         <table className="admin-table">
           <thead>
             <tr>
@@ -59,13 +61,21 @@ function AdminActualites() {
                 </td>
                 <td className="admin-table-actions">
                   <Link to={`/admin/actualites/${a.id}/edit`}>Modifier</Link>
-                  <button onClick={() => handleDelete(a.id, a.titre)}>Supprimer</button>
+                  <button onClick={() => setToDelete({ id: a.id, titre: a.titre })}>Supprimer</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
+
+      <ConfirmDialog
+        open={!!toDelete}
+        title="Supprimer cette actualité ?"
+        message={toDelete ? `"${toDelete.titre}" sera définitivement supprimée.` : ''}
+        onCancel={() => setToDelete(null)}
+        onConfirm={confirmDelete}
+      />
     </AdminLayout>
   )
 }

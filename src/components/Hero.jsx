@@ -14,11 +14,15 @@ const slideMedia = [
   },
   {
     type: 'image',
+    image: '/image2.jpg',
+  },
+  {
+    type: 'image',
     image: '/voiture.avif',
   },
   {
     type: 'image',
-    image: '/image8.jpg',
+    image: '/image7.jpg',
   },
   {
     type: 'video',
@@ -26,7 +30,7 @@ const slideMedia = [
   },
   {
     type: 'image',
-    image: '/image1.jpg',
+    image: '/courier.jpg',
   },
   {
     type: 'video',
@@ -34,16 +38,18 @@ const slideMedia = [
   },
   {
     type: 'image',
-    image: '/image2.jpg',
+    image: '/image5.jpg',
+  },
+  
+  {
+    type: 'image',
+    image: '/image8.jpg',
   },
   {
     type: 'image',
-    image: '/image3.jpg',
+    image: '/image6.jpg',
   },
-  {
-    type: 'image',
-    image: '/voyage.jpg',
-  },
+  
   {
     type: 'video',
     media: '/avions3.mp4',

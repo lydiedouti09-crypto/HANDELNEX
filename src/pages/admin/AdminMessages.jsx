@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getAdminMessages, deleteMessage } from '../../api'
 import AdminLayout from '../../components/admin/AdminLayout'
+import AdminLoading from '../../components/admin/AdminLoading'
 
 function AdminMessages() {
   const [messages, setMessages] = useState([])
@@ -26,11 +27,10 @@ function AdminMessages() {
 
   return (
     <AdminLayout title="Messages de contact">
-      {loading ? (
-        <p>Chargement...</p>
-      ) : messages.length === 0 ? (
+      <AdminLoading visible={loading} />
+      {!loading && messages.length === 0 ? (
         <p className="admin-table-empty">Aucun message pour le moment.</p>
-      ) : (
+      ) : !loading && (
         <div className="admin-messages-list">
           {messages.map((m) => (
             <div key={m.id} className="admin-message-card">

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAdminSolutions, createSolution, updateSolution, uploadImage, getMediaUrl } from '../../api'
 import AdminLayout from '../../components/admin/AdminLayout'
+import AdminLoading from '../../components/admin/AdminLoading'
 
 const emptyForm = {
   nom: '', description: '', nomFr: '', nomEn: '', nomDe: '', descriptionFr: '', descriptionEn: '', descriptionDe: '', descriptionComplete: '',
@@ -81,7 +82,7 @@ function AdminSolutionForm() {
     }
   }
 
-  if (loading) return <AdminLayout title="Solution"><p>Chargement...</p></AdminLayout>
+  if (loading) return <AdminLayout title="Solution"><AdminLoading /></AdminLayout>
 
   return (
     <AdminLayout title={isEdit ? 'Modifier la solution' : 'Nouvelle solution'}>

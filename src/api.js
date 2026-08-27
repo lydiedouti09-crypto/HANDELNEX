@@ -36,6 +36,17 @@ export async function fetchActualite(slug) {
   return res.json();
 }
 
+export async function sendContactMessage(data) {
+  const res = await fetch(`${API_BASE}/contact`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) throw new Error('Erreur lors de l\'envoi du message');
+  return res.json();
+}
+
 // --- Authentification ---
 
 export async function login(email, password) {

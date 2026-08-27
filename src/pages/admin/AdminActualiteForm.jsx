@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getAdminActualites, createActualite, updateActualite, uploadActualiteImage, getMediaUrl } from '../../api'
 import AdminLayout from '../../components/admin/AdminLayout'
+import AdminLoading from '../../components/admin/AdminLoading'
 
 const emptyForm = {
   titre: '', contenu: '', titreFr: '', titreEn: '', titreDe: '', contenuFr: '', contenuEn: '', contenuDe: '', image: '', imageFr: '', imageEn: '', imageDe: '',
@@ -80,7 +81,7 @@ function AdminActualiteForm() {
     }
   }
 
-  if (loading) return <AdminLayout title="Actualité"><p>Chargement...</p></AdminLayout>
+  if (loading) return <AdminLayout title="Actualité"><AdminLoading /></AdminLayout>
 
   return (
     <AdminLayout title={isEdit ? "Modifier l'actualité" : 'Nouvelle actualité'}>

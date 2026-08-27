@@ -20,6 +20,8 @@
   font-size: 12px;
   color: var(--text-soft);
   margin-bottom: 14px;
+  text-decoration: none;
+  border-bottom: none;
 }
 
 .actualite-card h3{

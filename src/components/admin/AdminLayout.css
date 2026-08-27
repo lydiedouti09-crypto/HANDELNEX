@@ -90,6 +90,30 @@
   padding: 28px 32px;
 }
 
+.admin-loading {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 28px;
+  background: #fff;
+  border: 1px solid #E5E8EF;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(16,40,69,0.16);
+}
+
+.admin-loading-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #5B6180;
+}
+
 /* Cartes de stats */
 .admin-stats-grid {
   display: grid;

@@ -74,7 +74,7 @@ const resources = {
         nom: 'Nom', email: 'Adresse e-mail', sujet: 'Sujet', message: 'Message',
         nom_ph: 'Votre nom', email_ph: 'vous@exemple.com', sujet_ph: 'Objet de votre message', message_ph: 'Écrivez votre message ici...',
         send: 'Envoyer', sent: 'Message envoyé',
-        email_title: 'E-mail', location_title: 'Siège', location: 'Francfort, Allemagne — HANDELNEX UG',
+        email_title: 'E-mail', location_title: 'Siège', location: 'HANDELNEX (haftungsbeschränkt) Hamburger Allee 10260486 Frankfurt am Main Deutschland',
         response_title: 'Réponse', response: 'Notre équipe répond généralement sous 48h ouvrées.',
       },
       footer: {
@@ -157,7 +157,7 @@ const resources = {
         nom: 'Name', email: 'Email address', sujet: 'Subject', message: 'Message',
         nom_ph: 'Your name', email_ph: 'you@example.com', sujet_ph: 'Subject of your message', message_ph: 'Write your message here...',
         send: 'Send', sent: 'Message sent',
-        email_title: 'Email', location_title: 'Headquarters', location: 'Frankfurt, Germany — HANDELNEX UG',
+        email_title: 'Email', location_title: 'Headquarters', location: 'HANDELNEX (haftungsbeschränkt)Hamburger Allee 10260486 Frankfurt am Main Germany',
         response_title: 'Response', response: 'Our team generally replies within 48 business hours.',
       },
       footer: {
@@ -240,7 +240,7 @@ const resources = {
         nom: 'Name', email: 'E-Mail-Adresse', sujet: 'Betreff', message: 'Nachricht',
         nom_ph: 'Ihr Name', email_ph: 'sie@beispiel.com', sujet_ph: 'Betreff Ihrer Nachricht', message_ph: 'Schreiben Sie hier Ihre Nachricht...',
         send: 'Senden', sent: 'Nachricht gesendet',
-        email_title: 'E-Mail', location_title: 'Sitz', location: 'Frankfurt, Deutschland — HANDELNEX UG',
+        email_title: 'E-Mail', location_title: 'Sitz', location: 'HANDELNEX (haftungsbeschränkt)Hamburger Allee 10260486 Frankfurt am Main Deutschland',
         response_title: 'Antwort', response: 'Unser Team antwortet in der Regel innerhalb von 48 Arbeitsstunden.',
       },
       footer: {

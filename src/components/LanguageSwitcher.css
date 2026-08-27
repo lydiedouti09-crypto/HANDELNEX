@@ -37,12 +37,7 @@
 }
 
 .flag-en{
-  background:
-    linear-gradient(90deg, transparent 42%, #fff 42% 58%, transparent 58%),
-    linear-gradient(0deg, transparent 38%, #fff 38% 62%, transparent 62%),
-    linear-gradient(90deg, transparent 46%, #cf142b 46% 54%, transparent 54%),
-    linear-gradient(0deg, transparent 43%, #cf142b 43% 57%, transparent 57%),
-    #1f3c88;
+  background: #012169 url('/flag-uk.svg') center / cover no-repeat;
 }
 
 .flag-de{
