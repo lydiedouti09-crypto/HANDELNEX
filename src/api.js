@@ -1,5 +1,9 @@
-const API_BASE = 'http://127.0.0.1:8000/api';
-const API_ORIGIN = 'http://127.0.0.1:8000';
+const configuredApiUrl = import.meta.env.VITE_API_URL;
+const localApiOrigin = typeof window !== 'undefined'
+  ? `${window.location.protocol}//${window.location.hostname}:8000`
+  : 'http://127.0.0.1:8000';
+const API_ORIGIN = (configuredApiUrl || localApiOrigin).replace(/\/$/, '');
+const API_BASE = `${API_ORIGIN}/api`;
 
 export function getMediaUrl(path) {
   if (!path || !path.startsWith('/uploads/')) return path;

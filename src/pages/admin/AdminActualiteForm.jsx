@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getAdminActualites, createActualite, updateActualite, uploadActualiteImage } from '../../api'
+import { getAdminActualites, createActualite, updateActualite, uploadActualiteImage, getMediaUrl } from '../../api'
 import AdminLayout from '../../components/admin/AdminLayout'
 
 const emptyForm = {
@@ -118,7 +118,7 @@ function AdminActualiteForm() {
             {label} (chemin ou URL)
             <input name={fieldName} value={form[fieldName]} onChange={handleChange} />
             <input type="file" accept="image/*" onChange={(event) => handleImageChange(event, fieldName)} disabled={uploading} />
-            {form[fieldName] && <img src={form[fieldName].startsWith('/uploads/') ? `http://127.0.0.1:8000${form[fieldName]}` : form[fieldName]} alt={`Aperçu ${label}`} style={{ maxWidth: '220px', maxHeight: '140px', objectFit: 'cover' }} />}
+            {form[fieldName] && <img src={getMediaUrl(form[fieldName])} alt={`Aperçu ${label}`} style={{ maxWidth: '220px', maxHeight: '140px', objectFit: 'cover' }} />}
           </label>
         ))}
         <label>
