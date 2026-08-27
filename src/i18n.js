@@ -55,7 +55,7 @@ const resources = {
         tag: 'ÉCOSYSTÈME', title: 'Nos solutions',
         desc: "Découvrez les applications et services proposés par HANDELNEX. Un écosystème conçu pour évoluer.",
         loading: 'Chargement des solutions...',
-        empty: "Aucune solution publiée pour le moment. Ajoutes-en une depuis l'espace admin.",
+        empty: "Aucune solution publiée pour le moment.",
         app_tag: 'Application', discover: 'Découvrir la solution', scan: 'SCANNER POUR TÉLÉCHARGER', android: 'Application Android',
       },
       actualites: {
