@@ -5,7 +5,7 @@ import AdminLayout from '../../components/admin/AdminLayout'
 
 const emptyForm = {
   titre: '', contenu: '', titreFr: '', titreEn: '', titreDe: '', contenuFr: '', contenuEn: '', contenuDe: '', image: '', imageFr: '', imageEn: '', imageDe: '',
-  statut: 'brouillon', datePublication: '',
+  statut: 'brouillon',
 }
 
 function AdminActualiteForm() {
@@ -121,10 +121,6 @@ function AdminActualiteForm() {
             {form[fieldName] && <img src={getMediaUrl(form[fieldName])} alt={`Aperçu ${label}`} style={{ maxWidth: '220px', maxHeight: '140px', objectFit: 'cover' }} />}
           </label>
         ))}
-        <label>
-          Date de publication
-          <input type="date" name="datePublication" value={form.datePublication} onChange={handleChange} required />
-        </label>
         <label>
           Statut
           <select name="statut" value={form.statut} onChange={handleChange}>

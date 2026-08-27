@@ -61,7 +61,7 @@ const resources = {
       actualites: {
         tag: 'ACTUALITÉS', title: 'Actualités & nouveautés',
         desc: 'Suivez les dernières nouvelles et initiatives de HANDELNEX.',
-        empty: 'Aucune actualité publiée pour le moment.',
+        empty: 'Aucune actualité publiée pour le moment.', read_more: 'Lire plus', back: 'Retour aux actualités', loading: 'Chargement...', error: 'Actualité introuvable.',
       },
       vision: {
         tag: 'NOTRE VISION',
@@ -81,7 +81,7 @@ const resources = {
         tagline: 'Des solutions qui connectent les opportunités.',
         entreprise: 'ENTREPRISE', solutions: 'SOLUTIONS', informations: 'INFORMATIONS',
         news: 'Actualités', privacy: 'Politique de confidentialité', travel: 'Voyage & Billetterie',
-        contact_us: 'Nous contacter', rights: 'Tous droits réservés.', location: 'Francfort, Allemagne · UG (haftungsbeschränkt)',
+        contact_us: 'Nous contacter', rights: 'Tous droits réservés.', location: 'Francfort, Allemagne (haftungsbeschränkt)',
       },
     },
   },
@@ -144,7 +144,7 @@ const resources = {
       actualites: {
         tag: 'NEWS', title: 'News & updates',
         desc: 'Follow the latest news and initiatives from HANDELNEX.',
-        empty: 'No news published yet.',
+        empty: 'No news published yet.', read_more: 'Read more', back: 'Back to news', loading: 'Loading...', error: 'News item not found.',
       },
       vision: {
         tag: 'OUR VISION',
@@ -164,7 +164,7 @@ const resources = {
         tagline: 'Solutions that connect opportunities.',
         entreprise: 'COMPANY', solutions: 'SOLUTIONS', informations: 'INFORMATION',
         news: 'News', privacy: 'Privacy policy', travel: 'Travel & Ticketing',
-        contact_us: 'Contact us', rights: 'All rights reserved.', location: 'Frankfurt, Germany · UG (haftungsbeschränkt)',
+        contact_us: 'Contact us', rights: 'All rights reserved.', location: 'Frankfurt, Germany (haftungsbeschränkt)',
       },
     },
   },
@@ -227,7 +227,7 @@ const resources = {
       actualites: {
         tag: 'NEUIGKEITEN', title: 'Neuigkeiten & Updates',
         desc: 'Verfolgen Sie die neuesten Nachrichten und Initiativen von HANDELNEX.',
-        empty: 'Noch keine Neuigkeiten veröffentlicht.',
+        empty: 'Noch keine Neuigkeiten veröffentlicht.', read_more: 'Mehr erfahren', back: 'Zurück zu den Neuigkeiten', loading: 'Wird geladen...', error: 'Neuigkeit nicht gefunden.',
       },
       vision: {
         tag: 'UNSERE VISION',
@@ -247,7 +247,7 @@ const resources = {
         tagline: 'Lösungen, die Chancen verbinden.',
         entreprise: 'UNTERNEHMEN', solutions: 'LÖSUNGEN', informations: 'INFORMATIONEN',
         news: 'Neuigkeiten', privacy: 'Datenschutzerklärung', travel: 'Reisen & Ticketing',
-        contact_us: 'Kontaktieren Sie uns', rights: 'Alle Rechte vorbehalten.', location: 'Frankfurt, Deutschland · UG (haftungsbeschränkt)',
+        contact_us: 'Kontaktieren Sie uns', rights: 'Alle Rechte vorbehalten.', location: 'Frankfurt, Deutschland (haftungsbeschränkt)',
       },
     },
   },

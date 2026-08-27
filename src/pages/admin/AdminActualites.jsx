@@ -39,7 +39,6 @@ function AdminActualites() {
           <thead>
             <tr>
               <th>Titre</th>
-              <th>Date</th>
               <th>Statut</th>
               <th></th>
             </tr>
@@ -47,13 +46,12 @@ function AdminActualites() {
           <tbody>
             {actualites.length === 0 && (
               <tr>
-                <td colSpan={4} className="admin-table-empty">Aucune actualité pour le moment.</td>
+                <td colSpan={3} className="admin-table-empty">Aucune actualité pour le moment.</td>
               </tr>
             )}
             {actualites.map((a) => (
               <tr key={a.id}>
                 <td>{a.titre}</td>
-                <td>{a.datePublication}</td>
                 <td>
                   <span className={`admin-badge ${a.statut === 'publie' ? 'admin-badge-green' : 'admin-badge-gray'}`}>
                     {a.statut}

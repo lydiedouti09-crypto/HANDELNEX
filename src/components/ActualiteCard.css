@@ -29,6 +29,7 @@
 }
 
 .actualite-content{
+  margin-bottom: 18px;
   display: -webkit-box;
   color: var(--text-soft);
   font-size: 14px;
@@ -38,6 +39,12 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   white-space: pre-line;
+}
+
+.actualite-link{
+  color: var(--sky);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 @media (max-width: 600px){
