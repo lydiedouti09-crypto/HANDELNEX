@@ -5,9 +5,15 @@ import AdminLayout from '../../components/admin/AdminLayout'
 import AdminLoading from '../../components/admin/AdminLoading'
 
 const emptyForm = {
-  nom: '', description: '', nomFr: '', nomEn: '', nomDe: '', descriptionFr: '', descriptionEn: '', descriptionDe: '', descriptionComplete: '',
-  image: '', imageFr: '', imageEn: '', imageDe: '', icone: '', categorie: '', lienGooglePlay: '',
-  statut: 'brouillon', ordreAffichage: 0,
+  nom: '', description: '', 
+  nomFr: '', nomEn: '', nomDe: '', 
+  descriptionFr: '', descriptionEn: '', descriptionDe: '', 
+  descriptionCompleteFr: '', descriptionCompleteEn: '', descriptionCompleteDe: '',
+  image: '', imageFr: '', imageEn: '', imageDe: '', 
+  icone: '', categorie: '', 
+  lienGooglePlay: '',
+  statut: 'brouillon', 
+  ordreAffichage: 0,
 }
 
 function AdminSolutionForm() {
@@ -29,6 +35,9 @@ function AdminSolutionForm() {
         ...s,
         nomFr: s.nomFr || s.nom || '',
         descriptionFr: s.descriptionFr || s.description || '',
+        descriptionCompleteFr: s.descriptionCompleteFr || s.descriptionComplete || '',
+        descriptionCompleteEn: s.descriptionCompleteEn || '',
+        descriptionCompleteDe: s.descriptionCompleteDe || '',
       })
       setLoading(false)
     }
@@ -66,7 +75,11 @@ function AdminSolutionForm() {
   async function handleSubmit(e) {
     e.preventDefault()
     setSaving(true)
-    const data = { ...form, nom: form.nomFr, description: form.descriptionFr }
+    const data = { 
+      ...form, 
+      nom: form.nomFr, 
+      description: form.descriptionFr,
+    }
     try {
       if (isEdit) {
         await updateSolution(id, data)
@@ -103,6 +116,8 @@ function AdminSolutionForm() {
           Catégorie
           <input name="categorie" value={form.categorie} onChange={handleChange} />
         </label>
+        
+        <h3 style={{ marginTop: '20px', color: '#0A2A4A' }}>Description courte (affichée sur la page d'accueil)</h3>
         <label>
           Description courte en français
           <textarea name="descriptionFr" value={form.descriptionFr} onChange={handleChange} rows={2} required />
@@ -115,6 +130,39 @@ function AdminSolutionForm() {
           Description courte en allemand
           <textarea name="descriptionDe" value={form.descriptionDe} onChange={handleChange} rows={2} />
         </label>
+
+        <h3 style={{ marginTop: '20px', color: '#0A2A4A' }}>Description complète (affichée sur la page de détail)</h3>
+        <label>
+          Description complète en français
+          <textarea 
+            name="descriptionCompleteFr" 
+            value={form.descriptionCompleteFr || ''} 
+            onChange={handleChange} 
+            rows={8} 
+            placeholder="Description détaillée de la solution en français..."
+          />
+        </label>
+        <label>
+          Description complète en anglais
+          <textarea 
+            name="descriptionCompleteEn" 
+            value={form.descriptionCompleteEn || ''} 
+            onChange={handleChange} 
+            rows={8} 
+            placeholder="Detailed description of the solution in English..."
+          />
+        </label>
+        <label>
+          Description complète en allemand
+          <textarea 
+            name="descriptionCompleteDe" 
+            value={form.descriptionCompleteDe || ''} 
+            onChange={handleChange} 
+            rows={8} 
+            placeholder="Ausführliche Beschreibung der Lösung auf Deutsch..."
+          />
+        </label>
+
         {[
           ['imageFr', 'Image française'],
           ['imageEn', 'Image anglaise'],

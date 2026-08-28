@@ -37,7 +37,7 @@ function ActualiteDetail() {
       {localizedImage && (
         <img className="actualite-detail-image" src={getMediaUrl(localizedImage)} alt="" />
       )}
-      <div className="actualite-detail-meta">{actualite.datePublication}</div>
+      
       <h1>{localizedTitle}</h1>
       <div className="actualite-detail-content">{localizedContent}</div>
     </main>

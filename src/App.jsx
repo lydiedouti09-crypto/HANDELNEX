@@ -11,6 +11,7 @@ import AdminSolutionForm from './pages/admin/AdminSolutionForm.jsx'
 import AdminActualites from './pages/admin/AdminActualites.jsx'
 import AdminActualiteForm from './pages/admin/AdminActualiteForm.jsx'
 import AdminMessages from './pages/admin/AdminMessages.jsx'
+import SolutionDetail from './pages/SolutionDetail.jsx'
 
 function App() {
   return (
@@ -36,6 +37,16 @@ function App() {
           </>
         }
       />
+      <Route
+  path="/nos-solutions/:slug"
+  element={
+    <>
+      <Navbar />
+      <SolutionDetail />
+      <Footer />
+    </>
+  }
+/>
 
       {/* Espace admin : sans Navbar/Footer du site public */}
       <Route path="/admin/login" element={<AdminLogin />} />

@@ -13,6 +13,7 @@ import VisionSection from '../components/VisionSection.jsx'
 import { fetchSolutions, fetchActualites } from '../api.js'
 import './Accueil.css'
 
+
 const infoIcons = ['hub', 'trending_up', 'public', 'location_city']
 const infoColors = ['var(--gold)', 'var(--coral)', 'var(--sky)', 'var(--indigo)']
 
