@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
@@ -8,60 +8,28 @@ import './Hero.css'
 
 // Les médias (images/vidéos) restent fixes, seul le texte change selon la langue.
 const slideMedia = [
-  {
-    type: 'video',
-    media: '/bateau3.mp4',
-  },
-  {
-    type: 'image',
-    image: '/image2.jpg',
-  },
-  {
-    type: 'image',
-    image: '/voiture.avif',
-  },
-  {
-    type: 'video',
-    media: '/bateau1.mp4',
-  },
-  
-  {
-    type: 'image',
-    image: '/courier.jpg',
-  },
-  {
-    type: 'video',
-    media: '/avions2.mp4',
-  },
-  
-  {
-    type: 'image',
-    image: '/information.jpg',
-  },
-  {
-    type: 'image',
-    image: '/navire.avif',
-  },
-
-  {
-    type: 'video',
-    media: '/avions4.mp4',
-  },
-  {
-    type: 'video',
-    media: '/avions5.mp4',
-  },
-  
-  
-
+  { type: 'video', media: '/bateau3.mp4' },
+  { type: 'image', image: '/image2.jpg' },
+  { type: 'image', image: '/voiture.avif' },
+  { type: 'video', media: '/bateau1.mp4' },
+  { type: 'image', image: '/courier.jpg' },
+  { type: 'video', media: '/avions2.mp4' },
+  { type: 'image', image: '/information.jpg' },
+  { type: 'image', image: '/navire.avif' },
+  { type: 'video', media: '/avions4.mp4' },
+  { type: 'video', media: '/avions5.mp4' },
 ]
 
 const pillIcons = ['inventory_2', 'shopping_cart', 'local_shipping', 'flight', 'public', 'memory']
 const pillKeys = ['logistique', 'commerce', 'livraison', 'voyage', 'importExport', 'technologie']
 
+const IMAGE_DURATION = 6000 // durée d'affichage d'une image, en ms
+
 function Hero() {
   const { t } = useTranslation()
   const [current, setCurrent] = useState(0)
+  const videoRefs = useRef([])
+  const timeoutRef = useRef(null)
 
   // Traductions du contenu texte, associées aux médias fixes ci-dessus
   const slideTexts = t('hero.slides', { returnObjects: true })
@@ -74,15 +42,43 @@ function Hero() {
   }))
   const pillLabels = t('hero.pills', { returnObjects: true })
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length)
-    }, 6000)
-    return () => clearInterval(timer)
-  }, [slides.length])
-
   const goTo = (index) => {
     setCurrent((index + slides.length) % slides.length)
+  }
+
+  // À chaque changement de slide : on relance la vidéo active depuis le début,
+  // on met en pause toutes les autres, et on programme le passage au slide suivant
+  // (après IMAGE_DURATION pour une image, ou à la fin de la vidéo pour une vidéo).
+  useEffect(() => {
+    clearTimeout(timeoutRef.current)
+
+    slides.forEach((s, i) => {
+      const videoEl = videoRefs.current[i]
+      if (!videoEl) return
+
+      if (i === current) {
+        videoEl.currentTime = 0
+        videoEl.play().catch(() => {})
+      } else {
+        videoEl.pause()
+      }
+    })
+
+    const activeSlide = slides[current]
+
+    if (activeSlide.type === 'image') {
+      timeoutRef.current = setTimeout(() => {
+        setCurrent((prev) => (prev + 1) % slides.length)
+      }, IMAGE_DURATION)
+    }
+    // Pour une vidéo, c'est l'événement onEnded (plus bas) qui déclenche la suite.
+
+    return () => clearTimeout(timeoutRef.current)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current])
+
+  const handleVideoEnded = () => {
+    setCurrent((prev) => (prev + 1) % slides.length)
   }
 
   const slide = slides[current]
@@ -98,11 +94,11 @@ function Hero() {
           >
             {s.type === 'video' ? (
               <video
+                ref={(el) => (videoRefs.current[i] = el)}
                 src={s.media}
-                autoPlay
                 muted
-                loop
                 playsInline
+                onEnded={i === current ? handleVideoEnded : undefined}
                 className="hero-bg-media"
                 onError={(event) => { event.currentTarget.style.display = 'none' }}
               />
@@ -193,4 +189,3 @@ function Hero() {
 }
 
 export default Hero
-
