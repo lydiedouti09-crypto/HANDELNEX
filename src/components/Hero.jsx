@@ -13,11 +13,10 @@ const slideMedia = [
   { type: 'image', image: '/voiture.avif' },
   { type: 'video', media: '/bateau1.mp4' },
   { type: 'image', image: '/courier.jpg' },
-  { type: 'video', media: '/avions2.mp4' },
+  { type: 'video', media: '/avions4.mp4' },
   { type: 'image', image: '/information.jpg' },
   { type: 'image', image: '/navire.avif' },
-  { type: 'video', media: '/avions4.mp4' },
-  { type: 'video', media: '/avions5.mp4' },
+  { type: 'video', media: '/avions3.mp4' },
 ]
 
 const pillIcons = ['inventory_2', 'shopping_cart', 'local_shipping', 'flight', 'public', 'memory']

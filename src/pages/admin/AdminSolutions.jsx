@@ -8,13 +8,21 @@ import AdminLoading from '../../components/admin/AdminLoading'
 function AdminSolutions() {
   const [solutions, setSolutions] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [toDelete, setToDelete] = useState(null) // { id, nom } ou null
 
   async function load() {
     setLoading(true)
-    const data = await getAdminSolutions()
-    setSolutions(data)
-    setLoading(false)
+    setError(null)
+    try {
+      const data = await getAdminSolutions()
+      setSolutions(data)
+    } catch (err) {
+      console.error(err)
+      setError("Impossible de charger les solutions. Vérifie que le serveur Symfony fonctionne et que la migration a bien été appliquée.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
@@ -36,7 +44,13 @@ function AdminSolutions() {
         </Link>
       </div>
 
-      {!loading && (
+      {!loading && error && (
+        <p style={{ color: '#B02A37', background: '#FDE3E5', padding: '14px 18px', borderRadius: '10px' }}>
+          {error}
+        </p>
+      )}
+
+      {!loading && !error && (
         <table className="admin-table">
           <thead>
             <tr>

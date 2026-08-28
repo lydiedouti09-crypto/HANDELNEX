@@ -6,6 +6,7 @@ import InfoCard from '../components/InfoCard.jsx'
 import ActivityCard from '../components/ActivityCard.jsx'
 import SolutionFeatured from '../components/SolutionFeatured.jsx'
 import SolutionCard from '../components/SolutionCard.jsx'
+import SolutionGridCard from '../components/SolutionGridCard.jsx'
 import ActualiteCard from '../components/ActualiteCard.jsx'
 import ContactForm from '../components/ContactForm.jsx'
 import SectionHead from '../components/SectionHead.jsx'
@@ -19,6 +20,7 @@ const infoColors = ['var(--gold)', 'var(--coral)', 'var(--sky)', 'var(--indigo)'
 
 const activityIcons = ['inventory_2', 'shopping_cart', 'local_shipping', 'description', 'public', 'memory', 'flight', 'recycling']
 const activityColors = ['var(--gold)', 'var(--indigo)', 'var(--coral)', 'var(--sky)', 'var(--mint)', 'var(--indigo)', 'var(--sky)', 'var(--mint)']
+
 
 function Accueil() {
   const { t } = useTranslation()
@@ -76,18 +78,24 @@ function Accueil() {
         </div>
       </section>
 
-      {/* Nos solutions */}
+      {/* Nos solutions — vue mise en avant si 1 seule, grille si plusieurs */}
       <section id="nos-solutions" className="solutions-section">
         <SectionHead tag={t('solutions.tag')} title={t('solutions.title')} description={t('solutions.desc')} />
 
         {loading && <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>{t('solutions.loading')}</p>}
-        {!loading && !premiereSolution && (
-          <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>{t('solutions.empty')}</p>
+        {!loading && solutions.length === 0 && (
+          <p style={{ textAlign: 'center', color: 'var(--text-soft)', marginBottom: '30px' }}>{t('solutions.empty')}</p>
         )}
-        {premiereSolution && <SolutionFeatured {...premiereSolution} />}
-        {autresSolutions.length > 0 && (
-          <div className="solutions-grid">
-            {autresSolutions.map((s) => <SolutionCard key={s.slug} {...s} />)}
+
+        {!loading && solutions.length === 1 && (
+          <SolutionFeatured {...solutions[0]} />
+        )}
+
+        {!loading && solutions.length > 1 && (
+          <div className="solutions-unified-grid">
+            {solutions.map((s) => (
+              <SolutionGridCard key={s.slug} {...s} />
+            ))}
           </div>
         )}
       </section>

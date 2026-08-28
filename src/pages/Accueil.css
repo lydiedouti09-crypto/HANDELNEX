@@ -16,6 +16,7 @@ section {
 
 .about-grid,
 .solutions-grid,
+.solutions-unified-grid,
 .news-grid {
   display: grid;
   gap: 20px;
@@ -26,11 +27,13 @@ section {
 
 .about-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 900px; }
 .solutions-grid,
+.solutions-unified-grid,
 .news-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 @media (max-width: 900px) {
   .about-section,
   .solutions-section,
+  .solutions-unified-grid
   .news-section,
   .contact-section {
     padding: 70px 6vw;
@@ -46,6 +49,7 @@ section {
 @media (max-width: 600px) {
   .about-section,
   .solutions-section,
+  .solutions-unified-grid
   .news-section,
   .contact-section {
     padding: 52px 20px;
