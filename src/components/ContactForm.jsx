@@ -6,7 +6,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { sendContactMessage } from '../api.js'
 
 // Remplace par TA clé de site (publique) obtenue sur google.com/recaptcha/admin
-const RECAPTCHA_SITE_KEY = '6LfBVJstAAAAAOmjVzatPzR7hwSskLkKkUbzgO5O'
+const RECAPTCHA_SITE_KEY = '6LdUKZ0tAAAAANV07IuMruLhpvh_zEYXWgWMmrp3'
 
 function ContactForm() {
   const { t } = useTranslation()
