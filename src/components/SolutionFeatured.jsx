@@ -5,6 +5,7 @@ import { useReveal } from '../hooks/useReveal.js'
 import { getMediaUrl } from '../api.js'
 import { useTranslation } from 'react-i18next'
 import './SolutionFeatured.css'
+import GooglePlayIcon from './GooglePlayIcon.jsx'
 
 function SolutionFeatured({
   nom = 'Voyage & Billetterie',
@@ -36,7 +37,7 @@ function SolutionFeatured({
 
         <div className="solution-actions">
           <a href={lienGooglePlay || '#'} target="_blank" rel="noreferrer" className="btn-store store-1">
-            <Icon name="play_arrow" size={18} /> Google Play
+            <GooglePlayIcon size={18} /> Google Play
           </a>
           <a href="#" className="btn-store store-2">
             <AppleIcon size={18} /> App Store
