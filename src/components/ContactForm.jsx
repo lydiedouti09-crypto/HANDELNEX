@@ -9,7 +9,7 @@ import { sendContactMessage } from '../api.js'
 const RECAPTCHA_SITE_KEY = '6LdUKZ0tAAAAANV07IuMruLhpvh_zEYXWgWMmrp3'
 
 function ContactForm() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [sent, setSent] = useState(false)
   const [error, setError] = useState('')
   const [captchaToken, setCaptchaToken] = useState(null)
@@ -59,10 +59,12 @@ function ContactForm() {
 
         <div className="field">
           <ReCAPTCHA
-            sitekey={RECAPTCHA_SITE_KEY}
-            onChange={(token) => setCaptchaToken(token)}
-            onExpired={() => setCaptchaToken(null)}
-          />
+              key={i18n.language}
+              hl={i18n.language}
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={(token) => setCaptchaToken(token)}
+              onExpired={() => setCaptchaToken(null)}
+/>
         </div>
 
         {error && <p style={{ color: '#B02A37', fontSize: '13.5px', marginBottom: '14px' }}>{error}</p>}
