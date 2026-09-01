@@ -1,33 +1,94 @@
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import Icon from './Icon.jsx'
 import { getMediaUrl } from '../api.js'
-import './SolutionGridCard.css'
+import { useTranslation } from 'react-i18next'
+import './SolutionCard.css'
 
-function SolutionGridCard({
-  nom, description, nomFr, nomEn, nomDe,
-  descriptionFr, descriptionEn, descriptionDe,
-  image, imageFr, imageEn, imageDe,
-  slug, categorie,
+function SolutionCard({
+  nom,
+  description,
+
+  nomFr,
+  nomEn,
+  nomDe,
+  nomPtBr,
+
+  descriptionFr,
+  descriptionEn,
+  descriptionDe,
+  descriptionPtBr,
+
+  slug,
+  icone,
+
+  image,
+  imageFr,
+  imageEn,
+  imageDe,
+  imagePtBr,
 }) {
-  const { t, i18n } = useTranslation()
-  const localizedName = { fr: nomFr, en: nomEn, de: nomDe }[i18n.language] || nom
-  const localizedDescription = { fr: descriptionFr, en: descriptionEn, de: descriptionDe }[i18n.language] || description
-  const localizedImage = { fr: imageFr, en: imageEn, de: imageDe }[i18n.language] || image
+  const { i18n } = useTranslation()
+
+  const localizedImage = {
+    fr: imageFr,
+    en: imageEn,
+    de: imageDe,
+    'pt-BR': imagePtBr,
+  }[i18n.language] || image
+
+  const localizedName = {
+    fr: nomFr,
+    en: nomEn,
+    de: nomDe,
+    'pt-BR': nomPtBr,
+  }[i18n.language] || nom
+
+  const localizedDescription = {
+    fr: descriptionFr,
+    en: descriptionEn,
+    de: descriptionDe,
+    'pt-BR': descriptionPtBr,
+  }[i18n.language] || description
+
+  const validIcon =
+    icone && /^[a-z0-9_]+$/.test(icone)
+      ? icone
+      : 'apps'
 
   return (
-    <div className="solution-grid-card">
-      <div
-        className="sgc-image"
-        style={{ backgroundImage: localizedImage ? `url(${getMediaUrl(localizedImage)})` : undefined }}
-      ></div>
-      <div className="sgc-body">
-        {categorie && <div className="sgc-tag">{categorie}</div>}
+    <div className="solution-card">
+
+      {localizedImage && (
+        <div className="solution-card-image-wrap">
+          <img
+            src={getMediaUrl(localizedImage)}
+            alt={localizedName}
+            className="solution-card-image"
+          />
+        </div>
+      )}
+
+      <div className="solution-card-body">
+
+        <div className="solution-card-icon">
+          <Icon name={validIcon} />
+        </div>
+
         <h3>{localizedName}</h3>
-        {localizedDescription && <p className="sgc-content">{localizedDescription}</p>}
-        <Link className="sgc-link" to={`/nos-solutions/${slug}`}>{t('solutions.discover')} →</Link>
+
+        <p>{localizedDescription}</p>
+
+        <Link
+          to={`/nos-solutions/${slug}`}
+          className="solution-card-link"
+        >
+          Découvrir →
+        </Link>
+
       </div>
+
     </div>
   )
 }
 
-export default SolutionGridCard
+export default SolutionCard

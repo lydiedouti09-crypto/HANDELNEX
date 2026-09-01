@@ -1,90 +1,303 @@
-.lang-switcher{
+/* =========================
+   LANGUAGE SWITCHER
+========================= */
+
+.lang-switcher {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.lang-trigger{
+
+/* =========================
+   BOUTON PRINCIPAL
+========================= */
+
+.lang-trigger {
   display: flex;
   align-items: center;
   gap: 8px;
+
   border: none;
   outline: none;
+
   min-width: 92px;
   padding: 11px 14px;
+
   border-radius: 100px;
+
   color: var(--navy-deep);
   background: var(--gold);
+
   font-size: 12px;
   font-weight: 700;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.lang-trigger:hover{ background: var(--gold-deep); }
+.lang-trigger:hover {
+  background: var(--gold-deep);
+  transform: translateY(-2px);
 
-.lang-flag{
+  box-shadow:
+    0 5px 12px rgba(16, 40, 69, 0.12);
+}
+
+.lang-trigger:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================
+   DRAPEAUX
+========================= */
+
+.lang-flag {
   display: inline-block;
+
   width: 18px;
   height: 13px;
+
   flex-shrink: 0;
-  border: 1px solid rgba(16, 40, 69, .15);
+
+  border: 1px solid rgba(16, 40, 69, 0.15);
   border-radius: 1px;
+
+  overflow: hidden;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+
+/* 🇫🇷 FRANCE */
+
+.flag-fr {
+  background:
+    linear-gradient(
+      90deg,
+      #1d3f91 0 33.33%,
+      #fff 33.33% 66.66%,
+      #ed2939 66.66%
+    );
+}
+
+
+/* 🇬🇧 ROYAUME-UNI */
+
+.flag-en {
+  background:
+    #012169
+    url('/flag-uk.svg')
+    center / cover no-repeat;
+}
+
+
+/* 🇩🇪 ALLEMAGNE */
+
+.flag-de {
+  background:
+    linear-gradient(
+      #000 0 33.33%,
+      #dd0000 33.33% 66.66%,
+      #ffce00 66.66%
+    );
+}
+
+
+/* 🇧🇷 BRÉSIL */
+
+/* 🇧🇷 BRÉSIL */
+
+.flag-pt-BR {
+  position: relative;
+  background: #009c3b; /* Vert brésilien */
   overflow: hidden;
 }
 
-.flag-fr{
-  background: linear-gradient(90deg, #1d3f91 0 33.33%, #fff 33.33% 66.66%, #ed2939 66.66%);
+/* Losange jaune du Brésil */
+.flag-pt-BR::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: 1px;
+  right: 1px;
+  background: #ffdf00; /* Jaune brésilien */
+  clip-path: polygon(
+    50% 0%,
+    100% 50%,
+    50% 100%,
+    0% 50%
+  );
 }
 
-.flag-en{
-  background: #012169 url('/flag-uk.svg') center / cover no-repeat;
+/* Disque bleu au centre */
+.flag-pt-BR::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #002776; /* Bleu brésilien */
+  border-radius: 50%;
+  z-index: 1;
 }
 
-.flag-de{
-  background: linear-gradient(#000 0 33.33%, #dd0000 33.33% 66.66%, #ffce00 66.66%);
-}
 
-.lang-chevron{
+/* =========================
+   FLÈCHE
+========================= */
+
+.lang-chevron {
   margin-left: auto;
+
   width: 7px;
   height: 7px;
+
   border-right: 1.5px solid var(--navy-deep);
   border-bottom: 1.5px solid var(--navy-deep);
-  transform: rotate(45deg) translateY(-2px);
+
+  transform:
+    rotate(45deg)
+    translateY(-2px);
+
+  transition: transform 0.25s ease;
 }
 
-.lang-menu{
+.lang-chevron-open {
+  transform:
+    rotate(225deg)
+    translateY(-2px);
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.lang-menu {
   position: absolute;
+
   top: calc(100% + 9px);
   right: 0;
+
   z-index: 60;
-  width: 185px;
+
+  width: 210px;
+
   padding: 8px;
-  border: 1px solid rgba(16, 40, 69, .08);
+
+  border: 1px solid rgba(16, 40, 69, 0.08);
   border-radius: 8px;
+
   background: #fff;
-  box-shadow: 0 8px 22px rgba(16, 40, 69, .14);
+
+  box-shadow:
+    0 8px 22px rgba(16, 40, 69, 0.14);
+
+  animation: languageMenuEnter 0.2s ease both;
 }
 
-.lang-option{
+
+/* Animation ouverture */
+
+@keyframes languageMenuEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================
+   OPTION
+========================= */
+
+.lang-option {
   display: grid;
-  grid-template-columns: 22px 28px 1fr;
+
+  grid-template-columns:
+    22px
+    38px
+    1fr;
+
   align-items: center;
+
   gap: 8px;
+
   width: 100%;
+
   padding: 10px 8px;
+
   border: 0;
   border-radius: 5px;
+
   background: transparent;
+
   color: var(--navy-deep);
+
   text-align: left;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.lang-option:hover,
-.lang-option.active{ background: #f5f6f8; }
+
+/* Hover */
+
+.lang-option:hover {
+  background: #f5f6f8;
+
+  transform: translateX(3px);
+}
+
+
+/* Langue sélectionnée */
+
+.lang-option.active {
+  background: #f5f6f8;
+}
+
+
+/* Texte */
 
 .lang-option strong,
-.lang-option span:last-child{
+.lang-option span:last-child {
   font-size: 12px;
+}
+
+
+/* Nom de la langue */
+
+.lang-option span:last-child {
+  color: #707070;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 860px) {
+
+  .lang-menu {
+    left: 0;
+    right: auto;
+  }
+
 }

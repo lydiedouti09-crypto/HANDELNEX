@@ -7,6 +7,7 @@ import './ActualiteDetail.css'
 function ActualiteDetail() {
   const { slug } = useParams()
   const { i18n, t } = useTranslation()
+
   const [actualite, setActualite] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -14,6 +15,7 @@ function ActualiteDetail() {
   useEffect(() => {
     setLoading(true)
     setError(false)
+
     fetchActualite(slug)
       .then(setActualite)
       .catch(() => setError(true))
@@ -24,22 +26,88 @@ function ActualiteDetail() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [slug])
 
-  if (loading) return <main className="actualite-detail-state">{t('actualites.loading')}</main>
-  if (error || !actualite) return <main className="actualite-detail-state">{t('actualites.error')}</main>
+  if (loading) {
+    return (
+      <main className="actualite-detail-state">
+        {t('actualites.loading')}
+      </main>
+    )
+  }
 
-  const localizedImage = { fr: actualite.imageFr, en: actualite.imageEn, de: actualite.imageDe }[i18n.language] || actualite.image
-  const localizedTitle = { fr: actualite.titreFr, en: actualite.titreEn, de: actualite.titreDe }[i18n.language] || actualite.titre
-  const localizedContent = { fr: actualite.contenuFr, en: actualite.contenuEn, de: actualite.contenuDe }[i18n.language] || actualite.contenu
+  if (error || !actualite) {
+    return (
+      <main className="actualite-detail-state">
+        {t('actualites.error')}
+      </main>
+    )
+  }
+
+  /*
+   * ================================
+   * IMAGE SELON LA LANGUE
+   * ================================
+   */
+  const localizedImage = {
+    fr: actualite.imageFr,
+    en: actualite.imageEn,
+    de: actualite.imageDe,
+    'pt-BR': actualite.imagePtBr,
+  }[i18n.language] || actualite.image
+
+
+  /*
+   * ================================
+   * TITRE SELON LA LANGUE
+   * ================================
+   */
+  const localizedTitle = {
+    fr: actualite.titreFr,
+    en: actualite.titreEn,
+    de: actualite.titreDe,
+    'pt-BR': actualite.titrePtBr,
+  }[i18n.language] || actualite.titre
+
+
+  /*
+   * ================================
+   * CONTENU SELON LA LANGUE
+   * ================================
+   */
+  const localizedContent = {
+    fr: actualite.contenuFr,
+    en: actualite.contenuEn,
+    de: actualite.contenuDe,
+    'pt-BR': actualite.contenuPtBr,
+  }[i18n.language] || actualite.contenu
+
 
   return (
     <main className="actualite-detail">
-      <Link className="actualite-detail-back" to="/#actualites">← {t('actualites.back')}</Link>
+
+      <Link
+        className="actualite-detail-back"
+        to="/#actualites"
+      >
+        ← {t('actualites.back')}
+      </Link>
+
+
       {localizedImage && (
-        <img className="actualite-detail-image" src={getMediaUrl(localizedImage)} alt="" />
+        <img
+          className="actualite-detail-image"
+          src={getMediaUrl(localizedImage)}
+          alt={localizedTitle || ''}
+        />
       )}
-      
+
+
       <h1>{localizedTitle}</h1>
-      <div className="actualite-detail-content">{localizedContent}</div>
+
+
+      <div className="actualite-detail-content">
+        {localizedContent}
+      </div>
+
     </main>
   )
 }

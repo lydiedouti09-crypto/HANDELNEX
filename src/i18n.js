@@ -5,8 +5,8 @@ const resources = {
   fr: {
     translation: {
       nav: {
-        accueil: 'Accueil', apropos: 'À propos', activites: 'Nos activités',
-        solutions: 'Nos solutions', vision: 'Notre vision', contact: 'Contact',
+        accueil: 'ACCUEIL', apropos: 'À PROPOS', activites: 'NOS ACTIVITÉS',
+        solutions: 'NOS SOLUTIONS', vision: 'NOTRE VISION', contact: 'CONTACT',
         cta: 'Découvrir nos solutions',
       },
       hero: {
@@ -78,9 +78,9 @@ const resources = {
         response_title: 'Réponse', response: 'Notre équipe répond généralement sous 48h ouvrées.',
       },
       footer: {
-        tagline: 'Des solutions qui connectent les opportunités.',
+        tagline: 'DES SOLUTIONS QUI CONNECTENT LES OPPORTUNITÉS.',
         entreprise: 'ENTREPRISE', solutions: 'SOLUTIONS', informations: 'INFORMATIONS',
-        news: 'Actualités', privacy: 'Politique de confidentialité', travel: 'Voyage & Billetterie',
+        news: 'ACTUALITÉS', privacy: 'POLITIQUE DE CONFIDENTIALITÉ', travel: 'VOYAGES & BILLETTERIE',
         contact_us: 'Nous contacter', rights: 'Tous droits réservés.', location: 'Francfort, Allemagne (haftungsbeschränkt)',
       },
     },
@@ -88,8 +88,8 @@ const resources = {
   en: {
     translation: {
       nav: {
-        accueil: 'Home', apropos: 'About', activites: 'Our Activities',
-        solutions: 'Our Solutions', vision: 'Our Vision', contact: 'Contact',
+        accueil: 'HOME', apropos: 'ABOUT', activites: 'OUR ACTIVITIES',
+        solutions: 'OUR SOLUTIONS', vision: 'OUR VISION', contact: 'CONTACT',
         cta: 'Discover our solutions',
       },
       hero: {
@@ -161,9 +161,9 @@ const resources = {
         response_title: 'Response', response: 'Our team generally replies within 48 business hours.',
       },
       footer: {
-        tagline: 'Solutions that connect opportunities.',
+        tagline: 'SOLUTIONS THAT CONNECT OPPORTUNITIES.',
         entreprise: 'COMPANY', solutions: 'SOLUTIONS', informations: 'INFORMATION',
-        news: 'News', privacy: 'Privacy policy', travel: 'Travel & Ticketing',
+        news: 'NEWS', privacy: 'PRIVACY POLICY', travel: 'TRAVEL & TICKETING',
         contact_us: 'Contact us', rights: 'All rights reserved.', location: 'Frankfurt, Germany (haftungsbeschränkt)',
       },
     },
@@ -171,9 +171,9 @@ const resources = {
   de: {
     translation: {
       nav: {
-        accueil: 'Startseite', apropos: 'Über uns', activites: 'Aktivitäten',
-        solutions: 'Lösungen', vision: 'Vision', contact: 'Kontakt',
-        cta: 'Lösungen entdecken',
+        accueil: 'STARTSEITE', apropos: 'ÜBER UNS', activites: 'AKTIVITÄTEN',
+        solutions: 'LÖSUNGEN', vision: 'VISION', contact: 'KONTAKT',
+        cta: 'LÖSUNGEN ENTDECKEN',
       },
       hero: {
         btn_discover: 'Uns entdecken', btn_solutions: 'Unsere Lösungen', scroll: 'SCROLLEN',
@@ -244,10 +244,222 @@ const resources = {
         response_title: 'Antwort', response: 'Unser Team antwortet in der Regel innerhalb von 48 Arbeitsstunden.',
       },
       footer: {
-        tagline: 'Lösungen, die Chancen verbinden.',
+        tagline: 'LÖSUNGEN, DIE CHANCEN VERBINDEN.',
         entreprise: 'UNTERNEHMEN', solutions: 'LÖSUNGEN', informations: 'INFORMATIONEN',
-        news: 'Neuigkeiten', privacy: 'Datenschutzerklärung', travel: 'Reisen & Ticketing',
+        news: 'NEUIGKEITEN', privacy: 'DATENSCHUTZERKLÄRUNG', travel: 'REISEN & TICKETING',
         contact_us: 'Kontaktieren Sie uns', rights: 'Alle Rechte vorbehalten.', location: 'Frankfurt, Deutschland (haftungsbeschränkt)',
+      },
+    },
+  },
+  'pt-BR': {
+    translation: {
+      nav: {
+        accueil: 'INÍCIO',
+        apropos: 'SOBRE NÓS',
+        activites: 'NOSSAS ATIVIDADES',
+        solutions: 'NOSSAS SOLUÇÕES',
+        vision: 'NOSSA VISÃO',
+        contact: 'CONTATO',
+        cta: 'DESCOBRIR NOSSAS SOLUÇÕES',
+      },
+
+      hero: {
+        btn_discover: 'Conheça-nos',
+        btn_solutions: 'Nossas soluções',
+        scroll: 'ROLAR',
+
+        slides: [
+          {
+            tag: 'Tecnologia & Digital',
+            title: 'Soluções que conectam oportunidades.',
+            desc: 'A HANDELNEX desenvolve e conecta serviços nas áreas de logística, comércio e soluções digitais.',
+          },
+          {
+            tag: 'Logística & Entrega',
+            title: 'Uma logística fluida em escala internacional.',
+            desc: 'Fluxos controlados, desde a coleta até a entrega final, onde quer que você precise.',
+          },
+          {
+            tag: 'Comércio & Intermediação',
+            title: 'Comércio online simplificado.',
+            desc: 'Intermediação confiável para suas compras, vendas e trocas de mercadorias.',
+          },
+          {
+            tag: 'Transporte & Distribuição',
+            title: 'Uma distribuição eficiente em escala internacional.',
+            desc: 'Soluções de transporte e distribuição otimizadas para atender às suas necessidades.',
+          },
+          {
+            tag: 'Serviços & Suporte',
+            title: 'Um suporte ao cliente rápido e profissional.',
+            desc: 'Um atendimento de qualidade para acompanhar você em seus projetos.',
+          },
+          {
+            tag: 'Inovação & Desenvolvimento',
+            title: 'A inovação no centro de nossas soluções.',
+            desc: 'Desenvolvimento contínuo de soluções inovadoras para oferecer os melhores resultados.',
+          },
+          {
+            tag: 'Viagens & Mobilidade',
+            title: 'Soluções para viajar com mais facilidade.',
+            desc: 'Serviços digitais desenvolvidos para facilitar seus projetos de viagem e deslocamentos.',
+          },
+          {
+            tag: 'Acompanhamento Profissional',
+            title: 'Um acompanhamento pensado para suas necessidades.',
+            desc: 'Serviços confiáveis e adaptados para acompanhar você em cada etapa de seus projetos.',
+          },
+          {
+            tag: 'Intercâmbio Internacional',
+            title: 'Conectando mercados e oportunidades.',
+            desc: 'Soluções que facilitam as trocas internacionais e fortalecem conexões.',
+          },
+          {
+            tag: 'Uma Rede em Movimento',
+            title: 'Construindo as soluções de amanhã.',
+            desc: 'A HANDELNEX desenvolve sua rede para responder às novas necessidades e aos novos usos de seus clientes.',
+          },
+        ],
+
+        pills: {
+          logistique: 'Logística',
+          commerce: 'Comércio',
+          livraison: 'Entrega',
+          voyage: 'Viagens',
+          importExport: 'Importação/Exportação',
+          technologie: 'Tecnologia',
+        },
+      },
+
+      apropos: {
+        tag: 'SOBRE A HANDELNEX',
+        title: 'Mais do que uma empresa. Uma rede de soluções.',
+        desc: 'A HANDELNEX é uma empresa sediada em Frankfurt que desenvolve e coordena serviços em diversas áreas: logística, comércio, entrega, mobilidade, importação/exportação e tecnologia.\n\nNosso objetivo é oferecer soluções práticas para necessidades concretas, facilitando as trocas entre diferentes mercados e territórios.',
+        btn: 'SAIBA MAIS',
+
+        infos: [
+          { title: 'Diversas áreas de atuação' },
+          { title: 'Soluções escaláveis' },
+          { title: 'Perspectiva internacional' },
+          { title: 'Sediada em Frankfurt' },
+        ],
+      },
+
+      activites: {
+        tag: 'NOSSAS ATIVIDADES',
+        title: 'Nossas áreas de atuação',
+        desc: 'Um conjunto de serviços complementares no centro da HANDELNEX.',
+
+        list: [
+          {
+            title: 'Logística',
+            desc: 'Soluções logísticas adaptadas às necessidades de empresas e particulares, com gestão otimizada dos fluxos.',
+          },
+          {
+            title: 'Comércio & Compras Online',
+            desc: 'Intermediação e suporte para compras online, facilitando as transações digitais.',
+          },
+          {
+            title: 'Entrega',
+            desc: 'Serviços de entrega confiáveis e rápidos, pensados para as necessidades modernas do comércio local e digital.',
+          },
+          {
+            title: 'Serviços Administrativos',
+            desc: 'Acompanhamento em procedimentos administrativos para simplificar a vida de empresas e particulares.',
+          },
+          {
+            title: 'Importação & Exportação',
+            desc: 'Importação e exportação de produtos eletrônicos e bens usados em escala internacional.',
+          },
+          {
+            title: 'Tecnologia & Serviços Digitais',
+            desc: 'Serviços de TI, eletrônicos e digitais para empresas em transformação digital.',
+          },
+          {
+            title: 'Viagens & Bilhetagem',
+            desc: 'Uma solução digital dedicada a projetos de viagem e bilhetagem — um aplicativo móvel intuitivo.',
+          },
+          {
+            title: 'Bens Usados',
+            desc: 'Comércio de bens usados com uma estrutura de confiança e garantias adequadas às transações.',
+          },
+        ],
+      },
+
+      solutions: {
+        tag: 'ECOSSISTEMA',
+        title: 'Nossas soluções',
+        desc: 'Descubra os aplicativos e serviços oferecidos pela HANDELNEX. Um ecossistema projetado para evoluir.',
+        loading: 'Carregando soluções...',
+        empty: 'Nenhuma solução publicada no momento.',
+        app_tag: 'Aplicativo',
+        discover: 'Descobrir a solução',
+        scan: 'ESCANEIE PARA BAIXAR',
+        android: 'Aplicativo Android',
+      },
+
+      actualites: {
+        tag: 'NOTÍCIAS',
+        title: 'Notícias & novidades',
+        desc: 'Acompanhe as últimas notícias e iniciativas da HANDELNEX.',
+        empty: 'Nenhuma notícia publicada no momento.',
+        read_more: 'LER MAIS',
+        back: 'Voltar às notícias',
+        loading: 'Carregando...',
+        error: 'Notícia não encontrada.',
+      },
+
+      vision: {
+        tag: 'NOSSA VISÃO',
+        title1: 'Conectar serviços.',
+        title2: 'Criar oportunidades.',
+        desc: 'A HANDELNEX tem como objetivo desenvolver serviços e soluções capazes de acompanhar as necessidades de um ambiente cada vez mais conectado.',
+
+        values: {
+          innovation: 'Inovação',
+          confiance: 'Confiança',
+          international: 'Internacional',
+          technologie: 'Tecnologia',
+        },
+      },
+
+      contact: {
+        tag: 'CONTATO',
+        title: 'Vamos conversar sobre seu projeto ou sua necessidade.',
+        nom: 'Nome',
+        email: 'Endereço de e-mail',
+        sujet: 'Assunto',
+        message: 'Mensagem',
+
+        nom_ph: 'Seu nome',
+        email_ph: 'voce@exemplo.com',
+        sujet_ph: 'Assunto da sua mensagem',
+        message_ph: 'Escreva sua mensagem aqui...',
+
+        send: 'Enviar',
+        sent: 'Mensagem enviada',
+
+        email_title: 'E-mail',
+        location_title: 'Sede',
+        location: 'HANDELNEX (haftungsbeschränkt) Hamburger Allee 10260486 Frankfurt am Main Alemanha',
+
+        response_title: 'Resposta',
+        response: 'Nossa equipe geralmente responde em até 48 horas úteis.',
+      },
+
+      footer: {
+        tagline: 'SOLUÇÕES QUE CONECTAM OPORTUNIDADES.',
+        entreprise: 'EMPRESA',
+        solutions: 'SOLUÇÕES',
+        informations: 'INFORMAÇÕES',
+
+        news: 'NOTÍCIAS',
+        privacy: 'POLÍTICA DE PRIVACIDADE',
+        travel: 'VIAGENS & BILHETAGEM',
+
+        contact_us: 'ENTRE EM CONTATO',
+        rights: 'Todos os direitos reservados.',
+        location: 'Frankfurt, Alemanha (haftungsbeschränkt)',
       },
     },
   },
