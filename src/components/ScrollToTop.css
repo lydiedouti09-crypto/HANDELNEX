@@ -21,6 +21,8 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
   animation: slideInUp 0.5s ease-out;
+  line-height: 1;
+  padding-bottom: 4px;
 }
 
 .scroll-button:hover {

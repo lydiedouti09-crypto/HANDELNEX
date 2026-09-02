@@ -9,7 +9,11 @@ section {
   padding: 90px 8vw;
 }
 
-.news-section,
+.news-section {
+  padding-top: 60px;
+  background: var(--paper-alt);
+}
+
 .contact-section {
   background: var(--paper-alt);
 }
@@ -34,9 +38,12 @@ section {
   .about-section,
   .solutions-section,
   .solutions-unified-grid
-  .news-section,
   .contact-section {
     padding: 70px 6vw;
+  }
+
+  .news-section {
+    padding: 50px 6vw;
   }
 
   .about-grid,
@@ -50,9 +57,12 @@ section {
   .about-section,
   .solutions-section,
   .solutions-unified-grid
-  .news-section,
   .contact-section {
     padding: 52px 20px;
+  }
+
+  .news-section {
+    padding: 40px 20px;
   }
 
   .about-grid,
