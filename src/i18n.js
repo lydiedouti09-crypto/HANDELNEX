@@ -78,7 +78,7 @@ const resources = {
         response_title: 'Réponse', response: 'Notre équipe répond généralement sous 48h ouvrées.',
       },
       footer: {
-        tagline: 'DES SOLUTIONS QUI CONNECTENT LES OPPORTUNITÉS.',
+        tagline: 'Des solutions qui connectent les opportunités.',  
         entreprise: 'ENTREPRISE', solutions: 'SOLUTIONS', informations: 'INFORMATIONS',
         news: 'ACTUALITÉS', privacy: 'POLITIQUE DE CONFIDENTIALITÉ', travel: 'VOYAGES & BILLETTERIE',
         contact_us: 'Nous contacter', rights: 'Tous droits réservés.', location: 'Francfort, Allemagne (haftungsbeschränkt)',
@@ -161,7 +161,7 @@ const resources = {
         response_title: 'Response', response: 'Our team generally replies within 48 business hours.',
       },
       footer: {
-        tagline: 'SOLUTIONS THAT CONNECT OPPORTUNITIES.',
+        tagline: 'Solutions that connect opportunities.',
         entreprise: 'COMPANY', solutions: 'SOLUTIONS', informations: 'INFORMATION',
         news: 'NEWS', privacy: 'PRIVACY POLICY', travel: 'TRAVEL & TICKETING',
         contact_us: 'Contact us', rights: 'All rights reserved.', location: 'Frankfurt, Germany (haftungsbeschränkt)',
@@ -244,7 +244,7 @@ const resources = {
         response_title: 'Antwort', response: 'Unser Team antwortet in der Regel innerhalb von 48 Arbeitsstunden.',
       },
       footer: {
-        tagline: 'LÖSUNGEN, DIE CHANCEN VERBINDEN.',
+        tagline: 'Lösungen, die Chancen verbinden.',
         entreprise: 'UNTERNEHMEN', solutions: 'LÖSUNGEN', informations: 'INFORMATIONEN',
         news: 'NEUIGKEITEN', privacy: 'DATENSCHUTZERKLÄRUNG', travel: 'REISEN & TICKETING',
         contact_us: 'Kontaktieren Sie uns', rights: 'Alle Rechte vorbehalten.', location: 'Frankfurt, Deutschland (haftungsbeschränkt)',
@@ -448,7 +448,7 @@ const resources = {
       },
 
       footer: {
-        tagline: 'SOLUÇÕES QUE CONECTAM OPORTUNIDADES.',
+        tagline: 'Soluções que conectam oportunidades.',
         entreprise: 'EMPRESA',
         solutions: 'SOLUÇÕES',
         informations: 'INFORMAÇÕES',
