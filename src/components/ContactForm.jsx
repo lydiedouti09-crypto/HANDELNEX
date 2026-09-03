@@ -4,6 +4,7 @@ import './ContactForm.css'
 import { useTranslation } from 'react-i18next'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { sendContactMessage } from '../api.js'
+import { useReveal } from '../hooks/useReveal.js'
 
 // Remplace par TA clé de site (publique) obtenue sur google.com/recaptcha/admin
 const RECAPTCHA_SITE_KEY = '6LdUKZ0tAAAAANV07IuMruLhpvh_zEYXWgWMmrp3'
@@ -14,6 +15,8 @@ function ContactForm() {
   const [error, setError] = useState('')
   const [captchaToken, setCaptchaToken] = useState(null)
   const [form, setForm] = useState({ nom: '', email: '', sujet: '', message: '' })
+  const { ref: formRef, visible: formVisible } = useReveal()
+  const { ref: infoRef, visible: infoVisible } = useReveal()
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -39,7 +42,7 @@ function ContactForm() {
 
   return (
     <div className="contact-grid">
-      <form className="form-card" onSubmit={handleSubmit}>
+      <form ref={formRef} className={`form-card reveal ${formVisible ? 'visible' : ''}`} onSubmit={handleSubmit}>
         <div className="field">
           <label>{t('contact.nom')}</label>
           <input type="text" name="nom" value={form.nom} onChange={handleChange} placeholder={t('contact.nom_ph')} required />
@@ -74,7 +77,7 @@ function ContactForm() {
         </button>
       </form>
 
-      <div className="info-list">
+      <div ref={infoRef} className={`info-list reveal ${infoVisible ? 'visible' : ''}`}>
         <div className="info-card-contact">
           <div className="info-ico info-ico-email"><Icon name="mail" size={22} /></div>
           <div><h3>{t('contact.email_title')}</h3><p>contact@handelnex.com</p></div>

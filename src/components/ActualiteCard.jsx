@@ -2,6 +2,7 @@ import './ActualiteCard.css'
 import { getMediaUrl } from '../api.js'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { useReveal } from '../hooks/useReveal.js'
 
 function ActualiteCard({
   slug,
@@ -22,6 +23,7 @@ function ActualiteCard({
   imagePtBr,
 }) {
   const { i18n, t } = useTranslation()
+  const { ref, visible } = useReveal()
 
   const localizedImage = {
     fr: imageFr,
@@ -45,7 +47,7 @@ function ActualiteCard({
   }[i18n.language] || contenu
 
   return (
-    <div className="actualite-card">
+    <div ref={ref} className={`actualite-card reveal ${visible ? 'visible' : ''}`}>
       <div
         className="actualite-image"
         style={{

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './LanguageSwitcher.jsx'
 import './Navbar.css'
+import { useScrollDirection } from '../hooks/useScrollDirection.js'
 
 function Navbar() {
   const { t } = useTranslation()
@@ -12,6 +13,8 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('accueil')
+  const scrollDirection = useScrollDirection()
+  const isNavbarHidden = scrolled && scrollDirection === 'down'
 
   /* =========================
      DÉTECTION DU SCROLL
@@ -157,7 +160,7 @@ function Navbar() {
 
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''} ${isNavbarHidden ? 'navbar-hidden' : ''}`}>
 
       {/* =========================
           LOGO

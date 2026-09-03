@@ -3,12 +3,27 @@
   border: 1px solid transparent;
   border-radius: 16px;
   padding: 24px 26px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  opacity: 0;
+  filter: blur(10px);
+  transform: translate3d(0, 120px, 0) scale(0.96);
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background 0.28s ease,
+    opacity 0.8s ease,
+    filter 0.8s ease;
   cursor: default;
 }
 
+.info-card.visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
 .info-card:hover{
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.01);
   border-color: var(--gold);
   background: #fff;
   box-shadow: 0 16px 32px rgba(23,58,99,0.12);

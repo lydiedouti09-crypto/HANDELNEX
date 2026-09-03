@@ -1,7 +1,7 @@
 import ValueItem from './ValueItem.jsx'
 import './VisionSection.css'
 import { useTranslation } from 'react-i18next'
-
+import { useReveal } from '../hooks/useReveal.js'
 
 const valueDefinitions = [
   { icon: 'construction', title: 'Innovation', color: 'var(--gold)' },
@@ -13,6 +13,8 @@ const valueDefinitions = [
 function VisionSection() {
   const { t } = useTranslation()
   const translatedValues = t('vision.values', { returnObjects: true })
+  const { ref, visible } = useReveal()
+
   return (
     <section id="notre-vision" className="vision-section">
       <video
@@ -25,7 +27,7 @@ function VisionSection() {
       />
       <div className="vision-overlay"></div>
 
-      <div className="vision-content">
+      <div ref={ref} className={`vision-content reveal ${visible ? 'visible' : ''}`}>
         <h1 className="vision-title">
           {t('vision.title1')}<br />
           <span className="accent">{t('vision.title2')}</span>
