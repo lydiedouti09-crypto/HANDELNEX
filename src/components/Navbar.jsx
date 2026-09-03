@@ -112,6 +112,7 @@ function Navbar() {
     closeMobileMenu()
 
     if (location.pathname === '/') {
+      window.history.replaceState(null, '', '/')
       window.scrollTo({
         top: 0,
         behavior: 'smooth'

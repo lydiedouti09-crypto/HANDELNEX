@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Hero from '../components/Hero.jsx'
@@ -29,6 +29,7 @@ function Accueil() {
   const [solutions, setSolutions] = useState([])
   const [actualites, setActualites] = useState([])
   const [loading, setLoading] = useState(true)
+  const initialLoad = useRef(true)
 
   useEffect(() => {
     fetchSolutions().then(setSolutions).catch((e) => console.error(e))
@@ -36,6 +37,13 @@ function Accueil() {
   }, [])
 
   useEffect(() => {
+    if (initialLoad.current) {
+      initialLoad.current = false
+      window.history.replaceState(null, '', `${location.pathname}${location.search}`)
+      window.scrollTo({ top: 0, behavior: 'auto' })
+      return
+    }
+
     if (location.hash) {
       const el = document.querySelector(location.hash)
       if (el) el.scrollIntoView({ behavior: 'smooth' })
@@ -107,7 +115,9 @@ function Accueil() {
           <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>{t('actualites.empty')}</p>
         )}
         <div className="news-grid">
-          {actualites.map((a) => <ActualiteCard key={a.slug} {...a} />)}
+          {actualites.map((a, index) => (
+            <ActualiteCard key={a.slug} index={index} {...a} />
+          ))}
         </div>
       </section>
 

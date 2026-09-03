@@ -21,14 +21,12 @@
 }
 
 .about-section .section-head {
-  max-width: 980px;
-  text-align: left;
-  align-items: flex-start;
+  max-width: 1100px;
+  text-align: center;
+  align-items: center;
 }
 
 .about-section .section-head h1 {
-  position: relative;
-  display: inline-block;
   opacity: 0;
   filter: blur(10px);
   transform: translate3d(-180px, 0, 0) scale(0.92);
@@ -45,8 +43,18 @@
   max-width: 900px;
 }
 
+.about-section .section-head > a {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translate3d(-100px, 0, 0) scale(0.96);
+}
+
 .about-section .section-head.visible p {
   animation: aboutTextReveal 1s cubic-bezier(0.18, 0.8, 0.2, 1) 0.18s forwards;
+}
+
+.about-section .section-head.visible > a {
+  animation: aboutButtonReveal 0.9s cubic-bezier(0.18, 0.8, 0.2, 1) 0.34s forwards;
 }
 
 @keyframes aboutTitleReveal {
@@ -85,14 +93,31 @@
   }
 }
 
+@keyframes aboutButtonReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(-100px, 0, 0) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(1px);
+    transform: translate3d(10px, 0, 0) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 @media (max-width: 700px) {
   .about-section .section-head {
     text-align: center;
     align-items: center;
   }
 
-  .about-section .section-head h1,
-  .about-section .section-head p {
-    transform: translateX(0);
-  }
+  .about-section .section-head h1 { transform: translate3d(-70px, 0, 0) scale(0.94); }
+  .about-section .section-head p { transform: translate3d(-55px, 0, 0) scale(0.97); }
+  .about-section .section-head > a { transform: translate3d(-40px, 0, 0) scale(0.97); }
 }

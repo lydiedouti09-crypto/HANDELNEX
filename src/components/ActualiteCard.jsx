@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useReveal } from '../hooks/useReveal.js'
 
 function ActualiteCard({
+  index = 0,
   slug,
   titre,
   titreFr,
@@ -47,7 +48,11 @@ function ActualiteCard({
   }[i18n.language] || contenu
 
   return (
-    <div ref={ref} className={`actualite-card reveal ${visible ? 'visible' : ''}`}>
+    <div
+      ref={ref}
+      className={`actualite-card reveal ${visible ? 'visible' : ''}`}
+      style={{ '--card-delay': `${index * 140}ms` }}
+    >
       <div
         className="actualite-image"
         style={{
