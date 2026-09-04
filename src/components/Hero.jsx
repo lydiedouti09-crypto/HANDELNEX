@@ -9,12 +9,12 @@ import './Hero.css'
 // Les médias (images/vidéos) restent fixes, seul le texte change selon la langue.
 const slideMedia = [
   { type: 'video', media: '/bateau3.mp4' },
-  { type: 'image', image: '/image2.jpg' },
+  { type: 'image', image: '/image5.jpg' },
   { type: 'image', image: '/voiture.avif' },
   { type: 'video', media: '/bateau1.mp4' },
   { type: 'image', image: '/courier.jpg' },
   { type: 'video', media: '/avions4.mp4' },
-  { type: 'image', image: '/information.jpg' },
+  { type: 'image', image: '/information2.jpg' },
   { type: 'image', image: '/navire.avif' },
   { type: 'video', media: '/avions3.mp4' },
 ]
