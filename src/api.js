@@ -1,8 +1,14 @@
 const configuredApiUrl = import.meta.env.VITE_API_URL;
 const localApiOrigin = typeof window !== 'undefined'
   ? `${window.location.protocol}//${window.location.hostname}:8000`
-  : 'http://127.0.0.1:8000';
-const API_ORIGIN = (configuredApiUrl || localApiOrigin).replace(/\/$/, '');
+  : 'http://handel-nex.de/api/api';
+
+// On retire un "/" final, PUIS un "/api" final s'il existe déjà,
+// pour éviter le bug "/api/api" peu importe comment VITE_API_URL est réglée.
+const API_ORIGIN = (configuredApiUrl || localApiOrigin)
+  .replace(/\/$/, '')
+  .replace(/\/api$/, '');
+
 const API_BASE = `${API_ORIGIN}/api`;
 
 export function getMediaUrl(path) {
