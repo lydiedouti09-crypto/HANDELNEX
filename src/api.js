@@ -1,7 +1,7 @@
 const configuredApiUrl = import.meta.env.VITE_API_URL;
 const localApiOrigin = typeof window !== 'undefined'
   ? `${window.location.protocol}//${window.location.hostname}:8000`
-  : 'http://handel-nex.de/api/api';
+  : 'https://handel-nex.de';
 
 // On retire un "/" final, PUIS un "/api" final s'il existe déjà,
 // pour éviter le bug "/api/api" peu importe comment VITE_API_URL est réglée.
