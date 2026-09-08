@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" role="img" aria-label="Drapeau du Royaume-Uni">
+  <clipPath id="flag-shape">
+    <rect width="60" height="30" />
+  </clipPath>
+  <g clip-path="url(#flag-shape)">
+    <path fill="#012169" d="M0 0h60v30H0z" />
+    <path fill="#fff" d="M0 0v3.35L53.3 30H60v-3.35L6.7 0H0zm60 0v3.35L6.7 30H0v-3.35L53.3 0H60zM0 30v-3.35L53.3 0H60v3.35L6.7 30H0zM60 30v-3.35L6.7 0H0v3.35L53.3 30H60z" />
+    <path fill="#c8102e" d="M0 0v1.5L57 30h3v-1.5L3 0H0zm60 0v1.5L3 30H0v-1.5L57 0h3zM0 30v-1.5L57 0h3v1.5L3 30H0zm60 0v-1.5L3 0H0v1.5L57 30h3z" />
+    <path fill="#fff" d="M24 0h12v30H24zM0 9h60v12H0z" />
+    <path fill="#c8102e" d="M27 0h6v30h-6zM0 12h60v6H0z" />
+  </g>
+</svg>

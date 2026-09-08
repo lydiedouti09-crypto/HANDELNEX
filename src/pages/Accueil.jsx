@@ -1,0 +1,137 @@
+import { useEffect, useRef, useState } from 'react'
+import { useLocation, Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Hero from '../components/Hero.jsx'
+import InfoCard from '../components/InfoCard.jsx'
+import ActivityCard from '../components/ActivityCard.jsx'
+import SolutionFeatured from '../components/SolutionFeatured.jsx'
+import SolutionCard from '../components/SolutionCard.jsx'
+import SolutionGridCard from '../components/SolutionGridCard.jsx'
+import ActualiteCard from '../components/ActualiteCard.jsx'
+import ContactForm from '../components/ContactForm.jsx'
+import SectionHead from '../components/SectionHead.jsx'
+import VisionSection from '../components/VisionSection.jsx'
+import { fetchSolutions, fetchActualites } from '../api.js'
+import './Accueil.css'
+
+
+const infoIcons = ['hub', 'trending_up', 'public', 'location_city']
+const infoColors = ['var(--gold)', 'var(--coral)', 'var(--sky)', 'var(--indigo)']
+
+const activityIcons = ['inventory_2', 'shopping_cart', 'local_shipping', 'description', 'public', 'memory', 'flight', 'recycling']
+const activityColors = ['var(--gold)', 'var(--indigo)', 'var(--coral)', 'var(--sky)', 'var(--mint)', 'var(--indigo)', 'var(--sky)', 'var(--mint)']
+
+
+function Accueil() {
+  const { t } = useTranslation()
+  const location = useLocation()
+
+  const [solutions, setSolutions] = useState([])
+  const [actualites, setActualites] = useState([])
+  const [loading, setLoading] = useState(true)
+  const initialLoad = useRef(true)
+
+  useEffect(() => {
+    fetchSolutions().then(setSolutions).catch((e) => console.error(e))
+    fetchActualites().then(setActualites).catch((e) => console.error(e)).finally(() => setLoading(false))
+  }, [])
+
+  useEffect(() => {
+    if (initialLoad.current) {
+      initialLoad.current = false
+      window.history.replaceState(null, '', `${location.pathname}${location.search}`)
+      window.scrollTo({ top: 0, behavior: 'auto' })
+      return
+    }
+
+    if (location.hash) {
+      const el = document.querySelector(location.hash)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [location])
+
+  const [premiereSolution, ...autresSolutions] = solutions
+  const infos = t('apropos.infos', { returnObjects: true })
+  const activities = t('activites.list', { returnObjects: true })
+
+  return (
+    <>
+      <Hero />
+
+      {/* À propos */}
+      <section id="a-propos" className="about-section">
+        <SectionHead tag={t('apropos.tag')} title={t('apropos.title')} description={t('apropos.desc')}>
+          <Link to="/#nos-activites" className="btn-dark" style={{ marginTop: '26px' }}>{t('apropos.btn')} →</Link>
+        </SectionHead>
+        <div className="about-grid">
+          {infos.map((info, i) => (
+            <InfoCard key={info.title} icon={infoIcons[i]} title={info.title} color={infoColors[i]} />
+          ))}
+        </div>
+      </section>
+
+      {/* Nos activités */}
+      <section id="nos-activites" className="activities-section">
+        <video className="activities-background" src="/tech.mp4" autoPlay muted loop playsInline />
+        <div className="activities-overlay" aria-hidden="true"></div>
+        <div className="activities-content">
+          <SectionHead tag={t('activites.tag')} title={t('activites.title')} description={t('activites.desc')} />
+          <div className="activities-grid">
+            {activities.map((a, i) => (
+              <ActivityCard key={a.title} icon={activityIcons[i]} color={activityColors[i]} title={a.title} description={a.desc} delay={(i % 4) * 100} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Nos solutions — vue mise en avant si 1 seule, grille si plusieurs */}
+      <section id="nos-solutions" className="solutions-section">
+        <SectionHead tag={t('solutions.tag')} title={t('solutions.title')} description={t('solutions.desc')} />
+
+        {loading && <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>{t('solutions.loading')}</p>}
+        {!loading && solutions.length === 0 && (
+          <p style={{ textAlign: 'center', color: 'var(--text-soft)', marginBottom: '30px' }}>{t('solutions.empty')}</p>
+        )}
+
+        {!loading && solutions.length === 1 && (
+          <SolutionFeatured {...solutions[0]} />
+        )}
+
+        {!loading && solutions.length > 1 && (
+          <div className="solutions-unified-grid">
+            {solutions.map((s) => (
+              <SolutionGridCard key={s.slug} {...s} />
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Actualités */}
+      <section id="actualites" className="news-section">
+        <SectionHead tag={t('actualites.tag')} title={t('actualites.title')} description={t('actualites.desc')} />
+        {!loading && actualites.length === 0 && (
+          <p style={{ textAlign: 'center', color: 'var(--text-soft)' }}>{t('actualites.empty')}</p>
+        )}
+        <div className="news-grid">
+          {actualites.map((a, index) => (
+            <ActualiteCard key={a.slug} index={index} {...a} />
+          ))}
+        </div>
+      </section>
+
+      <VisionSection />
+
+      {/* Contact */}
+      <section id="contact" className="contact-section">
+        <SectionHead tag={t('contact.tag')} title={t('contact.title')} />
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <ContactForm />
+        </div>
+      </section>
+    </>
+  )
+}
+
+export default Accueil

@@ -1,0 +1,108 @@
+import { useState } from 'react'
+import Icon from './Icon.jsx'
+import './ContactForm.css'
+import { useTranslation } from 'react-i18next'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { sendContactMessage } from '../api.js'
+import { useReveal } from '../hooks/useReveal.js'
+
+// Remplace par TA clé de site (publique) obtenue sur google.com/recaptcha/admin
+const RECAPTCHA_SITE_KEY = '6LdUKZ0tAAAAANV07IuMruLhpvh_zEYXWgWMmrp3'
+
+function ContactForm() {
+  const { t, i18n } = useTranslation()
+  const [sent, setSent] = useState(false)
+  const [error, setError] = useState('')
+  const [captchaToken, setCaptchaToken] = useState(null)
+  const [form, setForm] = useState({ nom: '', email: '', sujet: '', message: '' })
+  const { ref: formRef, visible: formVisible } = useReveal()
+  const { ref: infoRef, visible: infoVisible } = useReveal()
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
+
+    if (!captchaToken) {
+      setError('Merci de valider le CAPTCHA avant d\'envoyer.')
+      return
+    }
+
+    try {
+      await sendContactMessage({ ...form, captchaToken })
+      setSent(true)
+    } catch (err) {
+      setError('Une erreur est survenue. Réessaie.')
+      console.error(err)
+    }
+  }
+
+  return (
+    <div className="contact-grid">
+      <form ref={formRef} className={`form-card reveal ${formVisible ? 'visible' : ''}`} onSubmit={handleSubmit}>
+        <div className="field">
+          <label>{t('contact.nom')}</label>
+          <input type="text" name="nom" value={form.nom} onChange={handleChange} placeholder={t('contact.nom_ph')} required />
+        </div>
+        <div className="field">
+          <label>{t('contact.email')}</label>
+          <input type="email" name="email" value={form.email} onChange={handleChange} placeholder={t('contact.email_ph')} required />
+        </div>
+        <div className="field">
+          <label>{t('contact.sujet')}</label>
+          <select name="sujet" value={form.sujet} onChange={handleChange} required>
+            <option value=""></option>
+            <option value="Logistique">{t('contact.subject_options.logistics')}</option>
+            <option value="Commerce & achats en ligne">{t('contact.subject_options.commerce')}</option>
+            <option value="Livraison">{t('contact.subject_options.delivery')}</option>
+            <option value="Services administratifs">{t('contact.subject_options.administrative')}</option>
+            <option value="Import & Export">{t('contact.subject_options.import_export')}</option>
+            <option value="Technologies & services numériques">{t('contact.subject_options.digital')}</option>
+            <option value="Voyage & Billetterie">{t('contact.subject_options.travel')}</option>
+            <option value="Biens d'occasion">{t('contact.subject_options.second_hand')}</option>
+          </select>
+        </div>
+        <div className="field">
+          <label>{t('contact.message')}</label>
+          <textarea name="message" value={form.message} onChange={handleChange} placeholder={t('contact.message_ph')} required></textarea>
+        </div>
+
+        <div className="field">
+          <ReCAPTCHA
+              key={i18n.language}
+              hl={i18n.language}
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={(token) => setCaptchaToken(token)}
+              onExpired={() => setCaptchaToken(null)}
+/>
+        </div>
+
+        {error && <p style={{ color: '#B02A37', fontSize: '13.5px', marginBottom: '14px' }}>{error}</p>}
+
+        <button type="submit" className="btn-dark" style={{ width: '100%', justifyContent: 'center', border: 'none', cursor: 'pointer' }}>
+          {sent ? `${t('contact.sent')} ✓` : `${t('contact.send')} →`}
+        </button>
+      </form>
+
+      <div ref={infoRef} className={`info-list reveal ${infoVisible ? 'visible' : ''}`}>
+        <div className="info-card-contact">
+          <div className="info-ico info-ico-email"><Icon name="mail" size={22} /></div>
+          <div><h3>{t('contact.email_title')}</h3><p>contact@handel-nex.de</p></div>
+        </div>
+        <div className="info-card-contact">
+          <div className="info-ico info-ico-location"><Icon name="location_on" size={22} /></div>
+          <div><h3>{t('contact.location_title')}</h3><p>{t('contact.location')}</p></div>
+        </div>
+        <div className="info-card-contact">
+          <div className="info-ico info-ico-response"><Icon name="chat_bubble" size={22} /></div>
+          <div><h3>{t('contact.response_title')}</h3><p>{t('contact.response')}</p></div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ContactForm
