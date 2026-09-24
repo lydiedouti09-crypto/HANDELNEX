@@ -90,7 +90,7 @@ function ContactForm() {
       <div ref={infoRef} className={`info-list reveal ${infoVisible ? 'visible' : ''}`}>
         <div className="info-card-contact">
           <div className="info-ico info-ico-email"><Icon name="mail" size={22} /></div>
-          <div><h3>{t('contact.email_title')}</h3><p>Handelnex@hotmail.com</p></div>
+          <div><h3>{t('contact.email_title')}</h3><p>contact@handel-nex.de</p></div>
         </div>
         <div className="info-card-contact">
           <div className="info-ico info-ico-location"><Icon name="location_on" size={22} /></div>
